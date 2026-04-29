@@ -1,39 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bernard Dzekashu — Senior Endpoint &amp; Modern Workplace Engineer</title>
 <meta name="description" content="Endpoint engineer with 10+ years across Microsoft Intune, Azure Endpoint Manager, and self-hosted infrastructure. MD-102 certified. U.S. Army Veteran.">
 <meta name="author" content="Bernard Dzekashu">
-<meta name="theme-color" content="#0a0e1a">
-
-<!--
-  TECHNIQUES APPLIED (from epic-design 45-technique catalogue):
-    · Depth System (6 layers) — every section
-    · Multi-Layer Parallax — scroll-driven
-    · Pinned Sticky Section — Hero, About, Infrastructure
-    · Scrub Timeline — Hero exit choreography
-    · Split Converge — Hero title
-    · Word-by-Word Scroll Lighting — About bio
-    · Ghost Outlined Background Text — Hero "ENDPOINT"
-    · Bleed Typography — Section accents
-    · Clip-Path Wipe Reveals — Infrastructure layer cards
-    · Window Pane Iris — Project cards
-    · Skew + Elastic Bounce — Mapping rows
-    · Magnetic Hover — CTAs
-    · Theatrical Enter + Exit — Certifications
-    · Floating Loop — Glow blobs, particles
-    · Particle Network (vanilla canvas) — Hero atmosphere
-
-  PLACEHOLDERS — search and replace before publishing:
-    {{ROOTED_IN_TECH_URL}}   → URL of your RootedInTech blog
-    {{ZEKSMEDIA_URL}}        → public landing page (or "#" if private)
--->
+<meta name="theme-color" content="#16130f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#faf6ed" media="(prefers-color-scheme: light)">
 
 <meta property="og:title" content="Bernard Dzekashu — Endpoint &amp; Modern Workplace Engineer">
 <meta property="og:description" content="10+ years engineering Microsoft Intune environments at scale. MD-102. U.S. Army Veteran.">
 <meta property="og:type" content="website">
+
+<!--
+  PLACEHOLDERS — fill these in before publishing:
+    Anchor #link-rooted    → set href to your RootedInTech blog URL
+    Anchor #link-zeks      → set href to your ZeksMedia URL (or remove the card if private)
+    "[ TO BE FILLED ]" Lessons Learned card — drop in 2-3 real failure stories
+-->
+
+<!-- No-flash theme: read preference BEFORE first paint -->
+<script>
+(function() {
+  try {
+    var stored = localStorage.getItem('bd-theme');
+    var system = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', stored || system);
+  } catch(e) {}
+})();
+</script>
 
 <style>
   /* ───────────── FONTS ───────────── */
@@ -42,31 +38,55 @@
   @font-face { font-family: 'DM Sans'; src: url('fonts/dm-sans-latin.woff2') format('woff2'); font-weight: 100 1000; font-display: swap; }
   @font-face { font-family: 'DM Sans'; src: url('fonts/dm-sans-latin-ext.woff2') format('woff2'); font-weight: 100 1000; font-display: swap; unicode-range: U+0100-02AF, U+1E00-1E9F, U+2020, U+20A0-20AB; }
 
-  /* ───────────── TOKENS ───────────── */
+  /* ───────────── DARK THEME (default) ───────────── */
+  :root, [data-theme="dark"] {
+    --bg:           #16130f;   /* warm near-black */
+    --bg-elev:      #1e1a15;
+    --bg-elev-2:    #28231d;
+    --bg-deep:      #0e0c0a;
+    --border:       #322c25;
+    --border-strong:#44392f;
+    --ink:          #e8e3d6;   /* warm bone */
+    --ink-soft:     #a8a195;
+    --ink-muted:    #6f6a5d;
+    --ink-dim:      #4a463e;
+    --accent:       #d97757;   /* warm terracotta — single accent */
+    --accent-soft:  #b8593e;
+    --accent-glow:  rgba(217, 119, 87, 0.18);
+    --success:      #8aab7e;   /* muted sage */
+    --warning:      #d4a574;   /* muted amber */
+    --shadow-sm:    0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md:    0 8px 28px rgba(0, 0, 0, 0.45);
+    --shadow-lg:    0 24px 60px rgba(0, 0, 0, 0.55);
+    --grid-line:    rgba(168, 161, 149, 0.04);
+    --grid-mask:    radial-gradient(ellipse 100% 80% at 50% 50%, black 0%, transparent 95%);
+  }
+
+  /* ───────────── LIGHT THEME ───────────── */
+  [data-theme="light"] {
+    --bg:           #faf6ed;   /* warm cream */
+    --bg-elev:      #f2ecdc;
+    --bg-elev-2:    #e8e1ce;
+    --bg-deep:      #ede7d4;
+    --border:       #d8cfb8;
+    --border-strong:#bfb499;
+    --ink:          #2a221a;   /* warm near-black */
+    --ink-soft:     #54483b;
+    --ink-muted:    #847864;
+    --ink-dim:      #b3a78f;
+    --accent:       #b04a2c;   /* deeper terracotta for contrast on cream */
+    --accent-soft:  #903b22;
+    --accent-glow:  rgba(176, 74, 44, 0.12);
+    --success:      #4f6e44;
+    --warning:      #9d6f38;
+    --shadow-sm:    0 1px 2px rgba(38, 30, 20, 0.06);
+    --shadow-md:    0 6px 22px rgba(38, 30, 20, 0.10);
+    --shadow-lg:    0 18px 48px rgba(38, 30, 20, 0.14);
+    --grid-line:    rgba(84, 72, 59, 0.05);
+    --grid-mask:    radial-gradient(ellipse 100% 80% at 50% 50%, black 0%, transparent 95%);
+  }
+
   :root {
-    --bg: #06090f;
-    --bg-elev: #0e1322;
-    --bg-elev-hover: #131a2e;
-    --bg-deep: #04060c;
-    --border: #1a2340;
-    --border-strong: #263158;
-    --ink: #ecf0fa;
-    --ink-soft: #aeb6d4;
-    --ink-muted: #6f7ba0;
-    --ink-dim: #3d4670;
-    --cyan: #22d3ee;
-    --cyan-bright: #67e8f9;
-    --cyan-glow: rgba(34, 211, 238, 0.22);
-    --violet: #a78bfa;
-    --violet-bright: #c4b5fd;
-    --violet-glow: rgba(167, 139, 250, 0.22);
-    --mint: #4ade80;
-    --amber: #fbbf24;
-    --rose: #fb7185;
-
-    --depth-0-blur: 8px;
-    --depth-1-blur: 4px;
-
     --mono: 'JetBrains Mono', 'SF Mono', Consolas, 'Cascadia Code', 'Fira Code', Menlo, monospace;
     --display: 'Space Grotesk', system-ui, sans-serif;
     --body: 'DM Sans', system-ui, -apple-system, sans-serif;
@@ -84,354 +104,304 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    transition: background-color .35s ease, color .35s ease;
   }
-  ::selection { background: var(--cyan-glow); color: var(--ink); }
-  a { color: var(--cyan); text-decoration: none; transition: color .15s; }
-  a:hover { color: var(--violet); }
+  ::selection { background: var(--accent-glow); color: var(--ink); }
+  a { color: var(--accent); text-decoration: none; transition: color .15s, opacity .15s; }
+  a:hover { opacity: 0.7; }
 
-  /* skip link */
   .skip-link {
     position: absolute; top: -40px; left: 12px; z-index: 1000;
-    background: var(--cyan); color: var(--bg); padding: 8px 14px; border-radius: 4px;
-    font-family: var(--mono); font-size: 13px; font-weight: 600;
+    background: var(--accent); color: var(--bg);
+    padding: 8px 14px; border-radius: 4px;
+    font-size: 13px; font-weight: 600;
   }
-  .skip-link:focus { top: 12px; color: var(--bg); }
+  .skip-link:focus { top: 12px; }
 
-  /* ───────────── BACKGROUND MOTION (always on, behind everything) ───────────── */
+  /* ───────────── BACKGROUND TEXTURE (subtle, themed) ───────────── */
   body::before {
     content: ''; position: fixed; inset: 0;
     background-image:
-      linear-gradient(rgba(34, 211, 238, 0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(34, 211, 238, 0.025) 1px, transparent 1px);
-    background-size: 60px 60px;
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 64px 64px;
     pointer-events: none; z-index: -2;
-    animation: gridDrift 80s linear infinite;
-    mask-image: radial-gradient(ellipse 100% 80% at 50% 50%, black 0%, transparent 95%);
-    -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 50%, black 0%, transparent 95%);
-  }
-  body::after {
-    content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
-    background:
-      radial-gradient(ellipse 30% 30% at 20% 30%, rgba(34, 211, 238, 0.05) 0%, transparent 60%),
-      radial-gradient(ellipse 30% 30% at 80% 70%, rgba(167, 139, 250, 0.05) 0%, transparent 60%);
-    pointer-events: none; z-index: -1;
-    animation: orbsRotate 90s linear infinite;
-  }
-  @keyframes gridDrift {
-    from { background-position: 0 0, 0 0; }
-    to   { background-position: 60px 60px, 60px 60px; }
-  }
-  @keyframes orbsRotate {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+    mask-image: var(--grid-mask);
+    -webkit-mask-image: var(--grid-mask);
+    transition: background-image .35s ease;
   }
 
-  /* ───────────── DEPTH LAYER FOUNDATION ───────────── */
-  .scene { position: relative; }
-  .layer {
-    position: absolute; inset: 0;
-    pointer-events: none;
-    will-change: transform;
-  }
-  .layer.has-content { pointer-events: auto; }
-  .depth-0 { z-index: 0; filter: blur(var(--depth-0-blur)); }
-  .depth-1 { z-index: 1; filter: blur(var(--depth-1-blur)); mix-blend-mode: screen; }
-  .depth-2 { z-index: 2; }
-  .depth-3 { z-index: 3; }
-  .depth-4 { z-index: 4; position: relative; }
-  .depth-5 { z-index: 5; }
-
-  /* ───────────── SCROLL PROGRESS BAR ───────────── */
+  /* ───────────── SCROLL PROGRESS ───────────── */
   .scroll-progress {
     position: fixed; top: 0; left: 0; right: 0;
     height: 2px; z-index: 200;
-    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    background: var(--accent);
     transform-origin: 0 50%;
     transform: scaleX(var(--scroll-progress, 0));
     transition: transform .1s ease-out;
+    opacity: 0.7;
   }
 
   /* ───────────── NAV ───────────── */
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(6, 9, 15, 0.78);
-    backdrop-filter: blur(14px) saturate(150%);
-    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
     border-bottom: 1px solid var(--border);
+    transition: background-color .35s ease, border-color .35s ease;
   }
   .nav-inner {
     max-width: 1200px; margin: 0 auto;
-    padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; gap: 18px;
+    padding: 18px 28px;
+    display: flex; justify-content: space-between; align-items: center; gap: 18px;
   }
   .nav-brand {
-    font-family: var(--mono); font-weight: 600; font-size: 14px;
-    color: var(--ink); letter-spacing: -0.01em; flex-shrink: 0;
-  }
-  .nav-brand .prompt { color: var(--cyan); margin-right: 4px; }
-  .nav-brand .blink {
-    display: inline-block; width: 8px; height: 1em;
-    background: var(--cyan); margin-left: 4px; vertical-align: middle;
-    animation: blink 1.05s step-end infinite;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
   }
   .nav-links {
     display: flex; gap: 4px;
-    font-family: var(--mono); font-size: 12.5px;
+    font-family: var(--body);
+    font-size: 14.5px;
     flex-wrap: wrap; justify-content: flex-end;
+    align-items: center;
   }
   .nav-links a {
-    color: var(--ink-muted); font-weight: 500;
-    padding: 6px 9px; border-radius: 4px;
-    transition: color .15s, background .15s;
+    color: var(--ink-soft); font-weight: 500;
+    padding: 6px 12px; border-radius: 4px;
+    transition: color .15s, background-color .15s;
   }
-  .nav-links a:hover { color: var(--cyan); background: var(--bg-elev); }
-  .nav-links a .num { color: var(--violet); margin-right: 3px; opacity: 0.7; }
-  @media (max-width: 880px) { .nav-links { display: none; } }
-  @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+  .nav-links a:hover {
+    color: var(--ink); background: var(--bg-elev);
+    opacity: 1;
+  }
+
+  /* Theme toggle */
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    width: 34px; height: 34px;
+    border-radius: 6px;
+    margin-left: 8px;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: color .15s, border-color .15s, background-color .15s;
+  }
+  .theme-toggle:hover {
+    color: var(--accent); border-color: var(--accent);
+    background: var(--bg-elev);
+  }
+  .theme-toggle svg { width: 16px; height: 16px; }
+  .theme-toggle .icon-light { display: none; }
+  .theme-toggle .icon-dark { display: block; }
+  [data-theme="light"] .theme-toggle .icon-light { display: block; }
+  [data-theme="light"] .theme-toggle .icon-dark { display: none; }
+
+  @media (max-width: 760px) {
+    .nav-links a { display: none; }
+  }
 
   /* ───────────── HERO ───────────── */
   .hero {
     position: relative;
-    min-height: 100vh;
-    padding: 100px 28px 80px;
+    min-height: 92vh;
+    padding: 120px 28px 100px;
     overflow: hidden;
     isolation: isolate;
   }
-
   .hero-inner {
     position: relative; z-index: 4;
     max-width: 1200px; margin: 0 auto;
   }
 
-  /* depth-0: animated grid */
-  .hero .layer.depth-0 {
-    background-image:
-      radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 24px 24px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
-    animation: gridDrift 60s linear infinite;
-  }
-  /* depth-1: glow blobs (atmosphere) */
-  .hero .layer.depth-1 { filter: blur(60px); }
-  .hero .glow-blob {
-    position: absolute; width: 700px; height: 700px;
-    border-radius: 50%; opacity: 0.5;
+  /* Subtle warm glow blobs (replacing cyan/violet) */
+  .hero-glow {
+    position: absolute; pointer-events: none; z-index: 0;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.22;
     will-change: transform;
   }
-  .hero .glow-blob.cyan {
-    background: radial-gradient(circle, var(--cyan) 0%, transparent 65%);
-    top: -10%; left: -8%;
-    animation: blobFloatA 16s ease-in-out infinite;
+  .hero-glow.warm {
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 65%);
+    top: -8%; left: -6%;
+    animation: glowDriftA 22s ease-in-out infinite;
   }
-  .hero .glow-blob.violet {
-    background: radial-gradient(circle, var(--violet) 0%, transparent 65%);
-    bottom: -15%; right: -10%;
-    animation: blobFloatB 18s ease-in-out infinite;
+  .hero-glow.cool {
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, var(--warning) 0%, transparent 65%);
+    bottom: -10%; right: -8%;
+    opacity: 0.16;
+    animation: glowDriftB 26s ease-in-out infinite;
   }
-  @keyframes blobFloatA {
+  [data-theme="light"] .hero-glow { opacity: 0.18; }
+  [data-theme="light"] .hero-glow.cool { opacity: 0.13; }
+  @keyframes glowDriftA {
     0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(40px, 60px) scale(1.1); }
+    50% { transform: translate(30px, 50px) scale(1.08); }
   }
-  @keyframes blobFloatB {
+  @keyframes glowDriftB {
     0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-50px, -40px) scale(1.15); }
+    50% { transform: translate(-40px, -30px) scale(1.12); }
   }
 
-  /* depth-2: ghost outlined text */
-  .ghost-text {
-    position: absolute;
-    inset: 0; display: flex; align-items: center; justify-content: center;
-    font-family: var(--display);
-    font-size: clamp(7rem, 22vw, 22rem);
-    font-weight: 800;
-    line-height: 0.8;
-    letter-spacing: -0.05em;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(167, 139, 250, 0.10);
-    text-stroke: 1px rgba(167, 139, 250, 0.10);
-    user-select: none;
-    pointer-events: none;
-    white-space: nowrap;
-    overflow: hidden;
+  /* Hero meta line (replaces ALL_CAPS pulsing dot bar) */
+  .hero-meta {
+    font-family: var(--body);
+    font-size: 14.5px;
+    color: var(--ink-muted);
+    margin-bottom: 28px;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px;
   }
-  .ghost-text.left { justify-content: flex-start; padding-left: 2vw; transform: translateY(-15%); }
-  .ghost-text.right { justify-content: flex-end; padding-right: 2vw; transform: translateY(15%); }
-
-  /* depth-3: animated terminal/dashboard mockup */
-  .terminal-card {
-    position: absolute;
-    right: max(4vw, 20px); top: 50%;
-    transform: translateY(-50%);
-    width: clamp(280px, 32vw, 460px);
-    background: linear-gradient(135deg, rgba(14, 19, 34, 0.95), rgba(11, 16, 28, 0.85));
-    border: 1px solid var(--border-strong);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow:
-      0 0 0 1px rgba(34, 211, 238, 0.15),
-      0 30px 80px rgba(0,0,0,0.5),
-      0 0 60px rgba(34, 211, 238, 0.08);
-    font-family: var(--mono);
-    font-size: 11.5px;
-    backdrop-filter: blur(8px);
-    animation: cardFloat 8s ease-in-out infinite;
+  .hero-meta .available {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--success);
+    font-weight: 500;
   }
-  @keyframes cardFloat {
-    0%, 100% { transform: translateY(-50%) translateX(0) rotate(0deg); }
-    50% { transform: translateY(calc(-50% - 16px)) translateX(-6px) rotate(-0.5deg); }
+  .hero-meta .available::before {
+    content: ''; width: 7px; height: 7px;
+    border-radius: 50%; background: var(--success);
   }
-
-  .term-header {
-    display: flex; align-items: center; gap: 6px;
-    padding: 10px 14px;
-    background: rgba(0,0,0,0.3);
-    border-bottom: 1px solid var(--border);
-  }
-  .term-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .term-dot.r { background: #ff5f56; }
-  .term-dot.y { background: #ffbd2e; }
-  .term-dot.g { background: #27c93f; }
-  .term-title {
-    margin-left: auto; font-size: 11px; color: var(--ink-muted);
-    letter-spacing: 0.05em;
-  }
-  .term-body { padding: 14px 16px 18px; }
-  .term-line { color: var(--ink-soft); margin-bottom: 6px; min-height: 1.4em; }
-  .term-line .prompt { color: var(--cyan); margin-right: 6px; }
-  .term-line .key { color: var(--violet); }
-  .term-line .val { color: var(--mint); }
-  .term-line .ok { color: var(--mint); }
-  .term-line .warn { color: var(--amber); }
-  .term-line .dim { color: var(--ink-muted); }
-  .term-cursor {
-    display: inline-block; width: 7px; height: 1em;
-    background: var(--cyan); vertical-align: middle;
-    animation: blink 1.05s step-end infinite;
-  }
-
-  @media (max-width: 980px) {
-    .terminal-card { display: none; }
-  }
-
-  /* depth-4: text content */
-  .hero-status {
-    font-family: var(--mono); font-size: 12px; color: var(--ink-muted);
-    letter-spacing: 0.04em; margin-bottom: 28px;
-    display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center;
-  }
-  .status-dot {
-    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
-    background: var(--mint); box-shadow: 0 0 10px var(--mint);
-    animation: pulse 2.4s ease-in-out infinite;
-    margin-right: 6px;
-  }
-  .hero-status .sep { color: var(--border-strong); }
-  .hero-status .accent { color: var(--cyan); }
+  .hero-meta .sep { color: var(--border-strong); }
 
   .hero h1 {
     font-family: var(--display);
-    font-size: clamp(46px, 8vw, 90px);
-    font-weight: 700;
+    font-size: clamp(52px, 9vw, 96px);
+    font-weight: 600;
     color: var(--ink);
-    letter-spacing: -0.035em;
+    letter-spacing: -0.04em;
     line-height: 0.96;
-    margin-bottom: 26px;
-    max-width: 780px;
+    margin-bottom: 20px;
+    max-width: 920px;
   }
   .hero h1 .word {
     display: inline-block;
     will-change: transform, opacity;
   }
-  .hero h1 .accent {
-    background: linear-gradient(120deg, var(--cyan), var(--violet));
-    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  .hero h1 .surname {
+    color: var(--accent);
+    font-weight: 600;
   }
 
-  .hero-tagline {
-    font-family: var(--mono); font-size: clamp(14px, 1.6vw, 17px);
-    color: var(--ink-soft); margin-bottom: 28px;
-  }
-  .hero-tagline .prompt { color: var(--cyan); }
-  .hero-tagline .typed { display: inline-block; }
-  .hero-tagline .cursor {
-    display: inline-block; width: 9px; height: 1em;
-    background: var(--cyan); margin-left: 4px;
-    vertical-align: text-bottom;
-    animation: blink 1.05s step-end infinite;
+  .hero-subhead {
+    font-family: var(--display);
+    font-size: clamp(20px, 2.6vw, 26px);
+    font-weight: 400;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    letter-spacing: -0.015em;
+    max-width: 720px;
   }
 
   .hero-bio {
-    font-size: 17px; line-height: 1.7; color: var(--ink-soft);
-    max-width: 620px; margin-bottom: 36px;
+    font-size: 17.5px; line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 620px; margin-bottom: 38px;
   }
   .hero-bio strong { color: var(--ink); font-weight: 600; }
 
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
   .btn {
-    display: inline-flex; align-items: center; gap: 9px;
-    padding: 12px 22px; border-radius: 6px;
-    font-family: var(--mono); font-size: 13.5px; font-weight: 600;
-    transition: transform .15s, box-shadow .18s, border-color .15s, color .15s;
-    text-decoration: none; letter-spacing: -0.01em;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 22px; border-radius: 6px;
+    font-family: var(--body);
+    font-size: 15px; font-weight: 500;
+    transition: transform .12s ease, box-shadow .15s ease, border-color .15s, color .15s, background-color .15s;
+    text-decoration: none;
     cursor: pointer; border: none;
-    position: relative; overflow: hidden;
+    letter-spacing: -0.005em;
   }
-  .btn:hover { transform: translateY(-1px); }
+  .btn:hover { transform: translateY(-1px); opacity: 1; }
   .btn-primary {
-    background: linear-gradient(135deg, var(--cyan), var(--violet));
-    color: #06090f;
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.25), 0 8px 24px rgba(34, 211, 238, 0.20);
+    background: var(--accent); color: #fff;
+    box-shadow: var(--shadow-sm);
   }
   .btn-primary:hover {
-    color: #06090f;
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.5), 0 14px 36px rgba(34, 211, 238, 0.32);
+    background: var(--accent-soft);
+    color: #fff;
+    box-shadow: var(--shadow-md);
   }
   .btn-secondary {
-    background: var(--bg-elev); color: var(--ink);
+    background: transparent; color: var(--ink);
     border: 1px solid var(--border-strong);
   }
   .btn-secondary:hover {
-    color: var(--cyan); border-color: var(--cyan);
-    box-shadow: 0 0 24px rgba(34, 211, 238, 0.14);
+    color: var(--accent); border-color: var(--accent);
+    background: var(--bg-elev);
   }
   .btn .arrow { transition: transform .15s; }
   .btn:hover .arrow { transform: translateX(3px); }
 
-  /* depth-5: canvas particle network */
+  /* ───────────── HERO TERMINAL (subtle, authentic) ───────────── */
+  .terminal-card {
+    position: absolute;
+    right: max(4vw, 24px); top: 50%;
+    transform: translateY(-50%);
+    width: clamp(290px, 30vw, 440px);
+    background: var(--bg-elev);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    box-shadow: var(--shadow-lg);
+    z-index: 2;
+    animation: cardFloat 10s ease-in-out infinite;
+  }
+  @keyframes cardFloat {
+    0%, 100% { transform: translateY(-50%) translateX(0) rotate(0deg); }
+    50% { transform: translateY(calc(-50% - 12px)) translateX(-4px) rotate(-0.4deg); }
+  }
+  .term-header {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 14px;
+    background: var(--bg-deep);
+    border-bottom: 1px solid var(--border);
+  }
+  .term-dot { width: 9px; height: 9px; border-radius: 50%; opacity: 0.55; }
+  .term-dot.r { background: #d96565; }
+  .term-dot.y { background: #d4a574; }
+  .term-dot.g { background: #8aab7e; }
+  .term-title {
+    margin-left: auto; font-size: 11px;
+    color: var(--ink-muted);
+  }
+  .term-body { padding: 14px 16px 18px; }
+  .term-line { color: var(--ink-soft); margin-bottom: 6px; min-height: 1.4em; }
+  .term-line .prompt { color: var(--accent); margin-right: 6px; }
+  .term-line .key { color: var(--warning); }
+  .term-line .val { color: var(--success); }
+  .term-line .ok { color: var(--success); }
+  .term-line .dim { color: var(--ink-muted); }
+  .term-cursor {
+    display: inline-block; width: 7px; height: 1em;
+    background: var(--accent); vertical-align: middle;
+    animation: blink 1.05s step-end infinite;
+  }
+  @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+
+  @media (max-width: 1020px) {
+    .terminal-card { display: none; }
+  }
+
+  /* Hero canvas (toned-down particle drift) */
   #cyber-canvas {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
-    z-index: 5; opacity: 0.7;
+    z-index: 1; opacity: 0.45;
     pointer-events: none;
-  }
-
-  /* hero scanline */
-  .hero .scanline {
-    position: absolute; left: 0; right: 0;
-    height: 220px; pointer-events: none; z-index: 3;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(34, 211, 238, 0.025) 45%,
-      rgba(34, 211, 238, 0.06) 50%,
-      rgba(34, 211, 238, 0.025) 55%,
-      transparent 100%
-    );
-    animation: scanline 14s linear infinite;
-  }
-  @keyframes scanline {
-    0%   { transform: translateY(-100%); }
-    100% { transform: translateY(100vh); }
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--mint); }
-    50% { opacity: 0.55; box-shadow: 0 0 4px var(--mint); }
   }
 
   /* ───────────── SECTIONS ───────────── */
   section {
-    padding: 100px 28px;
+    padding: 110px 28px;
     border-top: 1px solid var(--border);
     position: relative;
   }
@@ -439,29 +409,38 @@
     max-width: 1200px; margin: 0 auto;
     position: relative; z-index: 4;
   }
-  .section-eyebrow {
-    font-family: var(--mono); font-size: 12px; font-weight: 500;
-    color: var(--cyan); letter-spacing: 0.04em; margin-bottom: 12px;
+  .section-label {
+    font-family: var(--body);
+    font-size: 13px; font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    margin-bottom: 14px;
+    display: inline-flex; align-items: center; gap: 10px;
   }
-  .section-eyebrow .num { color: var(--violet); margin-right: 8px; opacity: 0.7; }
+  .section-label::before {
+    content: ''; width: 18px; height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
   .section-title {
-    font-family: var(--display); font-size: clamp(32px, 5vw, 48px);
-    font-weight: 700; color: var(--ink);
-    letter-spacing: -0.025em; margin-bottom: 36px;
-    line-height: 1.1; max-width: 880px;
+    font-family: var(--display);
+    font-size: clamp(34px, 5.2vw, 52px);
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+    margin-bottom: 36px;
+    line-height: 1.08;
+    max-width: 880px;
   }
-  .section-title .accent {
-    background: linear-gradient(120deg, var(--cyan), var(--violet));
-    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-  }
+  .section-title .accent { color: var(--accent); font-weight: 500; }
   .section-intro {
-    font-size: 17px; line-height: 1.75;
+    font-size: 17.5px; line-height: 1.75;
     color: var(--ink-soft);
-    max-width: 780px; margin-bottom: 40px;
+    max-width: 780px; margin-bottom: 44px;
   }
   .section-intro strong { color: var(--ink); font-weight: 600; }
 
-  /* ───────────── ABOUT (word-by-word lighting) ───────────── */
+  /* ───────────── ABOUT (word lighting) ───────────── */
   .scroll-lit {
     font-size: 19px; line-height: 1.85; color: var(--ink-dim);
     max-width: 780px; margin-bottom: 18px;
@@ -470,81 +449,78 @@
   .scroll-lit .word {
     display: inline;
     color: var(--ink-dim);
-    transition: color .25s ease, text-shadow .25s ease;
+    transition: color .25s ease;
   }
-  .scroll-lit .word.lit {
-    color: var(--ink);
-    text-shadow: 0 0 18px rgba(34, 211, 238, 0.15);
-  }
+  .scroll-lit .word.lit { color: var(--ink); }
   .scroll-lit .word.brand {
-    background: linear-gradient(120deg, var(--cyan), var(--violet));
-    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    font-weight: 600;
+    color: var(--accent);
+    font-weight: 500;
   }
 
-  .skill-row { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-row { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 8px; }
   .skill-pill {
-    font-family: var(--mono); font-size: 12.5px; font-weight: 500;
+    font-family: var(--body); font-size: 13.5px; font-weight: 500;
     color: var(--ink-soft);
     background: var(--bg-elev);
-    padding: 6px 12px; border-radius: 999px;
+    padding: 6px 13px; border-radius: 999px;
     border: 1px solid var(--border);
-    transition: color .15s, border-color .15s, background .15s, transform .15s;
-    opacity: 0; transform: translateY(12px);
+    transition: color .15s, border-color .15s, background-color .15s, transform .15s;
+    opacity: 0; transform: translateY(10px);
   }
   .skill-pill.is-visible { opacity: 1; transform: translateY(0); }
   .skill-pill:hover {
-    color: var(--cyan); border-color: var(--cyan);
-    background: var(--bg-elev-hover); transform: translateY(-2px);
+    color: var(--accent); border-color: var(--accent);
+    background: var(--bg-elev-2); transform: translateY(-2px);
   }
 
   /* ───────────── INFRASTRUCTURE ───────────── */
   .layer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 14px; margin-top: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px; margin-top: 16px;
   }
   .layer-card {
     background: var(--bg-elev); border: 1px solid var(--border);
-    border-radius: 10px; padding: 22px 24px;
+    border-radius: 10px; padding: 24px 26px;
     position: relative;
-    transition: border-color .18s, background .18s, transform .25s, opacity .25s;
-    opacity: 0; transform: translateY(28px);
+    transition: border-color .18s, background-color .18s, transform .25s, opacity .25s;
+    opacity: 0; transform: translateY(24px);
   }
   .layer-card.is-visible { opacity: 1; transform: translateY(0); }
   .layer-card:hover {
-    border-color: var(--border-strong); background: var(--bg-elev-hover);
+    border-color: var(--accent); background: var(--bg-elev-2);
     transform: translateY(-2px);
-    box-shadow: 0 0 0 1px var(--cyan-glow), 0 12px 36px rgba(0,0,0,0.4);
+    box-shadow: var(--shadow-md);
   }
   .layer-card .layer-num {
-    position: absolute; top: 18px; right: 22px;
-    font-family: var(--mono); font-size: 11px; color: var(--violet); opacity: 0.6;
+    position: absolute; top: 20px; right: 24px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-muted);
   }
-  .layer-icon-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .layer-icon-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
   .layer-symbol {
-    font-family: var(--mono); font-size: 18px; font-weight: 700;
+    font-family: var(--display); font-size: 18px; font-weight: 600;
     width: 32px; height: 32px; border-radius: 6px;
     display: inline-flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--cyan), var(--violet)); color: var(--bg);
+    background: var(--accent); color: #fff;
   }
   .layer-name {
-    font-family: var(--display); font-size: 14px; font-weight: 600;
-    color: var(--ink); text-transform: uppercase; letter-spacing: 0.05em;
+    font-family: var(--display); font-size: 16px; font-weight: 600;
+    color: var(--ink); letter-spacing: -0.01em;
   }
   .layer-desc {
-    font-size: 14px; line-height: 1.6;
-    color: var(--ink-soft); margin-bottom: 12px;
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--ink-soft); margin-bottom: 14px;
   }
   .layer-stack {
     font-family: var(--mono); font-size: 11.5px; color: var(--ink-muted);
-    border-top: 1px solid var(--border); padding-top: 10px; line-height: 1.7;
+    border-top: 1px solid var(--border); padding-top: 12px; line-height: 1.7;
   }
-  .layer-stack .stack-label { color: var(--cyan); margin-right: 6px; }
+  .layer-stack .stack-label { color: var(--accent); margin-right: 6px; }
 
-  /* SVG architecture diagram */
+  /* SVG diagram */
   .arch-svg-wrap {
-    margin-top: 44px;
+    margin-top: 48px;
     background: var(--bg-deep);
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -555,15 +531,12 @@
   .arch-svg-wrap::before {
     content: ''; position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
     background-size: 40px 40px;
     pointer-events: none;
   }
-  .arch-svg {
-    width: 100%; height: auto; display: block;
-    position: relative; z-index: 1;
-  }
+  .arch-svg { width: 100%; height: auto; display: block; position: relative; z-index: 1; }
   .arch-svg .node-box {
     fill: var(--bg-elev);
     stroke: var(--border-strong);
@@ -571,10 +544,9 @@
     opacity: 0;
   }
   .arch-svg .node-box.is-visible { opacity: 1; transition: opacity .6s ease, stroke .3s; }
-  .arch-svg .node-box.cyan-stroke { stroke: var(--cyan); }
-  .arch-svg .node-box.violet-stroke { stroke: var(--violet); }
+  .arch-svg .node-box.accent-stroke { stroke: var(--accent); }
   .arch-svg .node-label {
-    font-family: var(--mono); font-size: 12px; fill: var(--ink); font-weight: 500;
+    font-family: var(--display); font-size: 12px; fill: var(--ink); font-weight: 500;
     opacity: 0;
   }
   .arch-svg .node-label.is-visible { opacity: 1; transition: opacity .5s ease .2s; }
@@ -584,10 +556,9 @@
   }
   .arch-svg .node-sub.is-visible { opacity: 1; transition: opacity .5s ease .3s; }
   .arch-svg .arrow {
-    stroke: var(--cyan); stroke-width: 1.5; fill: none;
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    opacity: 0.7;
+    stroke: var(--accent); stroke-width: 1.5; fill: none;
+    stroke-dasharray: 200; stroke-dashoffset: 200;
+    opacity: 0.85;
   }
   .arch-svg .arrow.is-visible {
     stroke-dashoffset: 0;
@@ -595,63 +566,62 @@
   }
   .arch-svg .vlan-cell {
     fill: var(--bg);
-    stroke: var(--mint);
+    stroke: var(--success);
     stroke-width: 1;
     opacity: 0;
   }
   .arch-svg .vlan-cell.is-visible { opacity: 1; transition: opacity .4s ease; }
   .arch-svg .vlan-label {
-    font-family: var(--mono); font-size: 9px; fill: var(--mint); font-weight: 500;
+    font-family: var(--mono); font-size: 9px; fill: var(--success); font-weight: 500;
     opacity: 0;
   }
   .arch-svg .vlan-label.is-visible { opacity: 1; transition: opacity .4s ease .15s; }
 
   /* ───────────── EXPERIENCE ───────────── */
-  .experience-list { display: flex; flex-direction: column; gap: 16px; }
+  .experience-list { display: flex; flex-direction: column; gap: 18px; }
   .exp {
     background: var(--bg-elev); border: 1px solid var(--border);
-    border-radius: 10px; padding: 26px 28px;
-    display: grid; grid-template-columns: 160px 1fr; gap: 26px;
-    transition: border-color .18s, background .18s, box-shadow .18s, transform .25s, opacity .25s;
-    opacity: 0; transform: translateY(28px);
+    border-radius: 10px; padding: 28px 30px;
+    display: grid; grid-template-columns: 170px 1fr; gap: 28px;
+    transition: border-color .18s, background-color .18s, transform .25s, opacity .25s;
+    opacity: 0; transform: translateY(24px);
   }
   .exp.is-visible { opacity: 1; transform: translateY(0); }
   .exp:hover {
-    border-color: var(--border-strong); background: var(--bg-elev-hover);
-    box-shadow: 0 0 0 1px var(--cyan-glow), 0 12px 36px rgba(0,0,0,0.4);
+    border-color: var(--accent); background: var(--bg-elev-2);
+    box-shadow: var(--shadow-md);
   }
   .exp-period {
     font-family: var(--mono); font-size: 12.5px; color: var(--ink-muted);
     font-weight: 500; padding-top: 4px; letter-spacing: 0.02em;
   }
   .exp-company {
-    font-family: var(--display); font-size: 19px; font-weight: 600;
-    color: var(--ink); margin-bottom: 4px;
+    font-family: var(--display); font-size: 21px; font-weight: 600;
+    color: var(--ink); margin-bottom: 4px; letter-spacing: -0.015em;
   }
-  .exp-company .arrow { color: var(--cyan); margin-right: 8px; font-family: var(--mono); }
   .exp-role {
-    font-family: var(--mono); font-size: 13px; color: var(--violet);
-    margin-bottom: 14px; letter-spacing: -0.01em;
+    font-family: var(--body); font-size: 14.5px; color: var(--accent);
+    margin-bottom: 16px; font-weight: 500;
   }
-  .exp-summary { font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 14px; }
+  .exp-summary { font-size: 15.5px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 16px; }
   .exp-tech { display: flex; flex-wrap: wrap; gap: 6px; }
   .exp-tech span {
-    font-family: var(--mono); font-size: 11.5px; color: var(--ink-muted);
-    background: var(--bg); padding: 3px 9px; border-radius: 4px; border: 1px solid var(--border);
+    font-family: var(--body); font-size: 12.5px; color: var(--ink-muted);
+    background: var(--bg); padding: 4px 10px; border-radius: 4px; border: 1px solid var(--border);
   }
-  @media (max-width: 720px) { .exp { grid-template-columns: 1fr; gap: 12px; padding: 22px; } }
+  @media (max-width: 720px) { .exp { grid-template-columns: 1fr; gap: 12px; padding: 24px; } }
 
-  /* ───────────── PROJECTS (window iris) ───────────── */
+  /* ───────────── PROJECTS ───────────── */
   .case-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 18px;
   }
   .case {
     background: var(--bg-elev); border: 1px solid var(--border);
-    border-radius: 10px; padding: 26px;
+    border-radius: 10px; padding: 28px;
     position: relative; overflow: hidden;
-    transition: transform .18s, border-color .18s, background .18s, box-shadow .22s;
+    transition: transform .18s, border-color .18s, background-color .18s, box-shadow .22s;
     clip-path: inset(45% 30% 45% 30% round 8px);
     opacity: 0;
   }
@@ -660,58 +630,53 @@
     opacity: 1;
     transition: clip-path 1.0s cubic-bezier(.65,.05,.36,1), opacity .8s ease;
   }
-  .case::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-    opacity: 0; transition: opacity .22s;
-  }
   .case:hover {
-    transform: translateY(-3px); border-color: var(--border-strong);
-    background: var(--bg-elev-hover);
-    box-shadow: 0 0 0 1px var(--cyan-glow), 0 16px 40px rgba(0,0,0,0.45);
+    transform: translateY(-3px); border-color: var(--accent);
+    background: var(--bg-elev-2);
+    box-shadow: var(--shadow-md);
   }
-  .case:hover::before { opacity: 1; }
-
   .case-meta {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 14px;
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    font-family: var(--mono); font-size: 11.5px;
+    letter-spacing: 0.04em;
   }
-  .case-id { color: var(--violet); display: flex; align-items: center; gap: 8px; }
-  .case-id::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--violet); box-shadow: 0 0 8px var(--violet);
+  .case-num {
+    color: var(--ink-muted); font-weight: 500;
   }
   .case-tag {
-    color: var(--cyan); background: rgba(34, 211, 238, 0.10);
-    border: 1px solid rgba(34, 211, 238, 0.22);
-    padding: 3px 9px; border-radius: 4px;
+    color: var(--ink-soft);
+    background: var(--bg);
+    padding: 3px 10px; border-radius: 4px;
+    border: 1px solid var(--border);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
   }
-  .case-tag.dev { color: var(--amber); background: rgba(251, 191, 36, 0.10); border-color: rgba(251, 191, 36, 0.22); }
-  .case-tag.prod { color: var(--mint); background: rgba(74, 222, 128, 0.10); border-color: rgba(74, 222, 128, 0.22); }
-
+  .case-tag.dev { color: var(--warning); border-color: var(--warning); }
+  .case-tag.prod { color: var(--success); border-color: var(--success); }
   .case-context {
-    font-family: var(--mono); font-size: 11.5px; color: var(--ink-muted);
-    margin-bottom: 8px; letter-spacing: 0.04em;
+    font-family: var(--body); font-size: 13px; color: var(--ink-muted);
+    margin-bottom: 8px;
   }
   .case-title {
-    font-family: var(--display); font-size: 21px; font-weight: 600;
-    color: var(--ink); margin-bottom: 18px; line-height: 1.2; letter-spacing: -0.015em;
+    font-family: var(--display); font-size: 22px; font-weight: 600;
+    color: var(--ink); margin-bottom: 20px; line-height: 1.2; letter-spacing: -0.02em;
   }
-  .case-block { margin-bottom: 14px; }
+  .case-block { margin-bottom: 16px; }
   .case-block-label {
-    font-family: var(--mono); font-size: 10.5px; color: var(--violet);
-    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;
+    font-family: var(--mono); font-size: 10.5px; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;
   }
-  .case-block p { font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+  .case-block p { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
   .case-block ul { padding-left: 18px; margin: 4px 0 0; }
-  .case-block li { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 4px; }
+  .case-block li { font-size: 14px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 4px; }
   .case-stack {
-    font-family: var(--mono); font-size: 12px; color: var(--ink-soft);
+    font-family: var(--mono); font-size: 12.5px; color: var(--ink-soft);
     margin-top: 4px; line-height: 1.7;
   }
-  .case-stack .pipe { color: var(--border-strong); margin: 0 6px; }
-  .case-stack .tool { color: var(--cyan); }
+  .case-stack .pipe { color: var(--ink-dim); margin: 0 6px; }
+  .case-stack .tool { color: var(--accent); }
 
   /* ───────────── MAPPING ───────────── */
   .mapping-wrap {
@@ -721,29 +686,29 @@
   .mapping-row {
     display: grid; grid-template-columns: 1fr 60px 1fr;
     border-bottom: 1px solid var(--border);
-    transition: background .15s;
+    transition: background-color .15s;
     opacity: 0;
   }
   .mapping-row.is-visible { opacity: 1; transition: opacity .5s ease; }
   .mapping-row:last-child { border-bottom: none; }
-  .mapping-row:hover { background: var(--bg-elev-hover); }
+  .mapping-row:hover { background: var(--bg-elev-2); }
   .mapping-row.header {
     background: var(--bg-deep);
-    font-family: var(--mono); font-size: 11px; color: var(--cyan);
-    text-transform: uppercase; letter-spacing: 0.06em;
+    font-family: var(--body); font-size: 12px; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600;
   }
   .mapping-cell {
     padding: 16px 22px; font-size: 14.5px; color: var(--ink-soft);
     display: flex; align-items: center;
     transition: transform .5s ease, opacity .5s ease;
   }
-  .mapping-cell.lab { color: var(--violet); transform: translateX(-30px); opacity: 0; }
+  .mapping-cell.lab { color: var(--ink-soft); transform: translateX(-30px); opacity: 0; }
   .mapping-cell.enterprise { color: var(--ink); font-weight: 500; transform: translateX(30px); opacity: 0; }
   .mapping-row.is-visible .mapping-cell.lab,
   .mapping-row.is-visible .mapping-cell.enterprise { transform: translateX(0); opacity: 1; }
   .mapping-cell.arrow {
-    justify-content: center; color: var(--cyan);
-    font-family: var(--mono); font-size: 18px;
+    justify-content: center; color: var(--accent);
+    font-family: var(--display); font-size: 18px;
     background: var(--bg-deep);
     border-left: 1px solid var(--border); border-right: 1px solid var(--border);
   }
@@ -751,7 +716,7 @@
     .mapping-row { grid-template-columns: 1fr; }
     .mapping-cell.arrow { display: none; }
     .mapping-cell { padding: 12px 18px; }
-    .mapping-cell.lab::before { content: '↪ '; color: var(--cyan); }
+    .mapping-cell.lab::before { content: '↪ '; color: var(--accent); }
   }
 
   /* ───────────── CERTIFICATIONS ───────────── */
@@ -759,75 +724,77 @@
   .cert-item {
     background: var(--bg-elev); border: 1px solid var(--border); border-radius: 8px;
     padding: 16px 20px; display: flex; align-items: center; gap: 14px;
-    transition: border-color .15s, background .15s, transform .25s, opacity .25s;
-    opacity: 0; transform: translateY(16px);
+    transition: border-color .15s, background-color .15s, transform .25s, opacity .25s;
+    opacity: 0; transform: translateY(14px);
   }
   .cert-item.is-visible { opacity: 1; transform: translateY(0); }
-  .cert-item:hover { border-color: var(--border-strong); background: var(--bg-elev-hover); }
-  .cert-status-icon { flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%; }
-  .cert-status-icon.active { background: var(--mint); box-shadow: 0 0 10px var(--mint); }
-  .cert-status-icon.in-progress { background: var(--amber); box-shadow: 0 0 10px var(--amber); animation: pulse-amber 2s ease-in-out infinite; }
+  .cert-item:hover { border-color: var(--accent); background: var(--bg-elev-2); }
+  .cert-status-icon { flex-shrink: 0; width: 9px; height: 9px; border-radius: 50%; }
+  .cert-status-icon.active { background: var(--success); }
+  .cert-status-icon.in-progress { background: var(--warning); }
   .cert-status-icon.roadmap { background: transparent; border: 1.5px solid var(--ink-muted); }
-  @keyframes pulse-amber { 0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--amber); } 50% { opacity: 0.55; box-shadow: 0 0 4px var(--amber); } }
   .cert-body { flex: 1; min-width: 0; }
-  .cert-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 3px; line-height: 1.35; }
-  .cert-status { font-family: var(--mono); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.03em; text-transform: uppercase; }
-  .cert-status.active-text { color: var(--mint); }
-  .cert-status.amber-text { color: var(--amber); }
+  .cert-name { font-size: 14.5px; font-weight: 500; color: var(--ink); margin-bottom: 3px; line-height: 1.35; }
+  .cert-status {
+    font-family: var(--body); font-size: 12px; color: var(--ink-muted);
+    letter-spacing: 0.02em;
+  }
+  .cert-status.active-text { color: var(--success); }
+  .cert-status.amber-text { color: var(--warning); }
 
   /* ───────────── ECOSYSTEM ───────────── */
-  .ecosystem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .ecosystem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
   .eco-card {
     background: var(--bg-elev); border: 1px solid var(--border); border-radius: 10px;
-    padding: 24px 26px;
-    transition: transform .18s, border-color .18s, background .18s, box-shadow .22s;
+    padding: 26px 28px;
+    transition: transform .18s, border-color .18s, background-color .18s, box-shadow .22s, opacity .6s;
     display: block; color: inherit;
     opacity: 0; transform: translateY(20px);
   }
-  .eco-card.is-visible { opacity: 1; transform: translateY(0); transition: transform .6s ease, opacity .6s ease, border-color .18s, background .18s, box-shadow .22s; }
+  .eco-card.is-visible { opacity: 1; transform: translateY(0); }
   .eco-card:hover {
-    transform: translateY(-3px); border-color: var(--cyan); background: var(--bg-elev-hover);
-    box-shadow: 0 0 0 1px var(--cyan-glow), 0 14px 36px rgba(0,0,0,0.4);
-    color: inherit;
+    transform: translateY(-3px); border-color: var(--accent); background: var(--bg-elev-2);
+    box-shadow: var(--shadow-md);
+    color: inherit; opacity: 1;
   }
-  .eco-tag { font-family: var(--mono); font-size: 11px; color: var(--violet); margin-bottom: 8px; letter-spacing: 0.06em; }
-  .eco-name { font-family: var(--display); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
-  .eco-desc { font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 10px; }
-  .eco-link { font-family: var(--mono); font-size: 12px; color: var(--cyan); }
+  .eco-tag { font-family: var(--body); font-size: 12px; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.04em; font-weight: 500; }
+  .eco-name { font-family: var(--display); font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.015em; }
+  .eco-desc { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 12px; }
+  .eco-link { font-family: var(--body); font-size: 13.5px; color: var(--accent); }
 
   .placeholder-card {
     background: var(--bg-elev); border: 1px dashed var(--border-strong); border-radius: 10px;
-    padding: 22px 26px; color: var(--ink-muted); font-size: 14px; line-height: 1.6;
+    padding: 24px 28px; color: var(--ink-muted); font-size: 14.5px; line-height: 1.6;
   }
   .placeholder-card .label {
-    font-family: var(--mono); font-size: 11px; color: var(--amber);
+    font-family: var(--mono); font-size: 11px; color: var(--warning);
     text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; display: block;
   }
 
   /* ───────────── CONTACT ───────────── */
   .contact-section {
-    background:
-      radial-gradient(ellipse 50% 50% at 30% 30%, rgba(34, 211, 238, 0.10) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 70% 70%, rgba(167, 139, 250, 0.10) 0%, transparent 60%),
-      var(--bg);
+    background: var(--bg-deep);
     overflow: hidden;
   }
   .contact-content { text-align: center; max-width: 640px; margin: 0 auto; position: relative; }
+  .contact-content .section-label,
   .contact-content .section-title { margin-left: auto; margin-right: auto; }
-  .contact-content p { font-size: 17px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 32px; }
+  .contact-content .section-label { display: inline-flex; }
+  .contact-content p { font-size: 17.5px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 36px; }
   .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 
   /* ───────────── FOOTER ───────────── */
   footer {
-    padding: 32px 28px; border-top: 1px solid var(--border);
-    text-align: center; font-family: var(--mono); font-size: 12px;
-    color: var(--ink-muted); letter-spacing: 0.03em;
+    padding: 36px 28px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--ink-muted);
   }
-  footer .veteran { color: var(--cyan); }
-  footer .sep { color: var(--border-strong); margin: 0 8px; }
-  footer .version { color: var(--violet); }
+  footer .veteran { color: var(--accent); }
+  footer .sep { color: var(--border-strong); margin: 0 10px; }
 
-  /* ───────────── ACCESSIBILITY: REDUCED MOTION ───────────── */
+  /* ───────────── REDUCED MOTION ───────────── */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -853,101 +820,86 @@
 
   <nav>
     <div class="nav-inner">
-      <div class="nav-brand"><span class="prompt">&gt;</span>bernard.dzekashu<span class="blink"></span></div>
+      <div class="nav-brand">Bernard Dzekashu</div>
       <div class="nav-links">
-        <a href="#about"><span class="num">01</span>about</a>
-        <a href="#infra"><span class="num">02</span>infra</a>
-        <a href="#experience"><span class="num">03</span>experience</a>
-        <a href="#projects"><span class="num">04</span>projects</a>
-        <a href="#mapping"><span class="num">05</span>skills_map</a>
-        <a href="#certifications"><span class="num">06</span>certs</a>
-        <a href="#ecosystem"><span class="num">07</span>ecosystem</a>
-        <a href="#contact"><span class="num">08</span>contact</a>
+        <a href="#about">About</a>
+        <a href="#infra">Infrastructure</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#mapping">Skills Map</a>
+        <a href="#certifications">Certs</a>
+        <a href="#ecosystem">Ecosystem</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light or dark mode" type="button">
+          <svg class="icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        </button>
       </div>
     </div>
   </nav>
 
   <!-- ═══════════════ HERO ═══════════════ -->
-  <header class="hero scene" data-scene="hero">
+  <header class="hero">
+    <div class="hero-glow warm" aria-hidden="true"></div>
+    <div class="hero-glow cool" aria-hidden="true"></div>
+    <canvas id="cyber-canvas" aria-hidden="true"></canvas>
 
-    <!-- Depth 0: animated grid background -->
-    <div class="layer depth-0" aria-hidden="true"></div>
-
-    <!-- Depth 1: glow blobs (atmosphere) -->
-    <div class="layer depth-1" aria-hidden="true">
-      <div class="glow-blob cyan"></div>
-      <div class="glow-blob violet"></div>
-    </div>
-
-    <!-- Depth 2: ghost outlined background text -->
-    <div class="layer depth-2" aria-hidden="true">
-      <div class="ghost-text left">ENDPOINT</div>
-      <div class="ghost-text right">ENGINEER</div>
-    </div>
-
-    <!-- Depth 3: animated terminal/dashboard mockup -->
-    <div class="layer depth-3" aria-hidden="true">
-      <div class="terminal-card">
-        <div class="term-header">
-          <span class="term-dot r"></span>
-          <span class="term-dot y"></span>
-          <span class="term-dot g"></span>
-          <span class="term-title">intune-deploy.ps1</span>
-        </div>
-        <div class="term-body" id="term-body">
-          <div class="term-line"><span class="prompt">PS&gt;</span><span class="term-typed" data-line="1">Connect-MSGraph -Scopes "DeviceManagementConfiguration.ReadWrite.All"</span></div>
-          <div class="term-line dim" data-line="2">[<span class="ok">OK</span>] Connected as <span class="key">bernard@tenant.onmicrosoft.com</span></div>
-          <div class="term-line"><span class="prompt">PS&gt;</span><span class="term-typed" data-line="3">Get-IntuneManagedDevice | Where-Object { $_.compliance -eq "Compliant" }</span></div>
-          <div class="term-line dim" data-line="4">→ <span class="val">2,287</span> compliant of <span class="val">2,300</span> endpoints (99.4%)</div>
-          <div class="term-line"><span class="prompt">PS&gt;</span><span class="term-typed" data-line="5">Deploy-AutopilotProfile -ESP $true -OOBE Enabled</span></div>
-          <div class="term-line dim" data-line="6">[<span class="ok">DEPLOY</span>] Autopilot profile pushed to <span class="key">DFW-PILOT-RING</span></div>
-          <div class="term-line"><span class="prompt">PS&gt;</span><span class="term-typed" data-line="7">Set-ConditionalAccessPolicy -ZeroTrust $true -BitLocker Required</span></div>
-          <div class="term-line dim" data-line="8">[<span class="ok">SUCCESS</span>] Policy applied <span class="dim">// awaiting next sync</span></div>
-          <div class="term-line"><span class="prompt">PS&gt;</span><span class="term-cursor"></span></div>
-        </div>
+    <!-- Terminal mockup (the one authentic showpiece) -->
+    <div class="terminal-card" aria-hidden="true">
+      <div class="term-header">
+        <span class="term-dot r"></span>
+        <span class="term-dot y"></span>
+        <span class="term-dot g"></span>
+        <span class="term-title">intune-deploy.ps1</span>
+      </div>
+      <div class="term-body" id="term-body">
+        <div class="term-line"><span class="prompt">PS&gt;</span><span class="term-typed" data-line="1">Connect-MSGraph -Scopes "DeviceManagementConfiguration.ReadWrite.All"</span></div>
+        <div class="term-line dim" data-line="2">[<span class="ok">OK</span>] Connected as <span class="key">bernard@tenant.onmicrosoft.com</span></div>
+        <div class="term-line"><span class="prompt">PS&gt;</span><span class="term-typed" data-line="3">Get-IntuneManagedDevice | Where-Object { $_.compliance -eq "Compliant" }</span></div>
+        <div class="term-line dim" data-line="4">→ <span class="val">2,287</span> compliant of <span class="val">2,300</span> endpoints (99.4%)</div>
+        <div class="term-line"><span class="prompt">PS&gt;</span><span class="term-typed" data-line="5">Deploy-AutopilotProfile -ESP $true -OOBE Enabled</span></div>
+        <div class="term-line dim" data-line="6">[<span class="ok">DEPLOY</span>] Autopilot profile pushed to <span class="key">DFW-PILOT-RING</span></div>
+        <div class="term-line"><span class="prompt">PS&gt;</span><span class="term-typed" data-line="7">Set-ConditionalAccessPolicy -ZeroTrust $true -BitLocker Required</span></div>
+        <div class="term-line dim" data-line="8">[<span class="ok">SUCCESS</span>] Policy applied <span class="dim">// awaiting next sync</span></div>
+        <div class="term-line"><span class="prompt">PS&gt;</span><span class="term-cursor"></span></div>
       </div>
     </div>
 
-    <!-- Hero scanline -->
-    <div class="scanline" aria-hidden="true"></div>
-
-    <!-- Depth 4: text content -->
-    <div class="hero-inner depth-4">
-      <div class="hero-status">
-        <span><span class="status-dot"></span><span class="accent">AVAILABLE FOR HIRE</span></span>
-        <span class="sep">/</span>
-        <span>AUBREY, TX &middot; CST</span>
-        <span class="sep">/</span>
-        <span>10+ YRS &middot; MD-102</span>
-        <span class="sep">/</span>
-        <span>U.S. ARMY VETERAN</span>
+    <div class="hero-inner">
+      <div class="hero-meta">
+        <span class="available">Open to senior endpoint roles</span>
+        <span class="sep">·</span>
+        <span>Aubrey, TX</span>
+        <span class="sep">·</span>
+        <span>10+ years · MD-102</span>
+        <span class="sep">·</span>
+        <span>U.S. Army Veteran</span>
       </div>
 
       <h1 aria-label="Bernard Dzekashu">
-        <span class="word" data-word-side="left">Bernard</span>
-        <span class="word accent" data-word-side="right">Dzekashu</span>
+        <span class="word">Bernard</span> <span class="word surname">Dzekashu</span>
       </h1>
 
-      <div class="hero-tagline" aria-label="Senior Endpoint and Modern Workplace Engineer">
-        <span class="prompt">&gt;</span> <span class="typed" id="tagline-typed"></span><span class="cursor"></span>
-      </div>
+      <p class="hero-subhead">Senior Endpoint &amp; Modern Workplace Engineer.</p>
 
       <p class="hero-bio">10+ years engineering <strong>Microsoft Intune</strong>, <strong>Azure Endpoint Manager</strong>, and Modern Workplace estates at enterprise scale &mdash; including a 300,000-device hybrid Azure AD environment at Citigroup, where I owned the AdminStudio platform for the global packaging team. I run a self-hosted, production-grade infrastructure lab to test the same disciplines I apply at work.</p>
 
       <div class="hero-cta">
-        <a href="cv.pdf" class="btn btn-primary magnetic" download>DOWNLOAD_CV.pdf <span class="arrow">→</span></a>
-        <a href="#projects" class="btn btn-secondary magnetic">SEE_THE_WORK <span class="arrow">→</span></a>
+        <a href="cv.pdf" class="btn btn-primary magnetic" download>Download CV (PDF) <span class="arrow">→</span></a>
+        <a href="#projects" class="btn btn-secondary magnetic">See the work <span class="arrow">→</span></a>
       </div>
     </div>
-
-    <!-- Depth 5: canvas particle network -->
-    <canvas id="cyber-canvas" aria-hidden="true"></canvas>
   </header>
 
-  <!-- ═══════════════ 01 ABOUT (word-lit) ═══════════════ -->
-  <section id="about" class="scene">
+  <!-- ═══════════════ ABOUT ═══════════════ -->
+  <section id="about">
     <div class="section-inner">
-      <div class="section-eyebrow"><span class="num">// 01</span>ABOUT</div>
+      <div class="section-label">About</div>
       <h2 class="section-title">Endpoint engineer who <span class="accent">automates everything</span> and secures by default.</h2>
 
       <p class="scroll-lit" data-lit>I design and run Microsoft endpoint estates the way platform teams run products: clear standards, documented runbooks, automation that compounds. Most candidates know <span class="brand">Intune</span> or <span class="brand">endpoint security</span>. I bridge both with the <span class="brand">PowerShell</span> and packaging discipline to make policy stick at scale.</p>
@@ -979,12 +931,12 @@
     </div>
   </section>
 
-  <!-- ═══════════════ 02 INFRASTRUCTURE ═══════════════ -->
-  <section id="infra" class="scene">
+  <!-- ═══════════════ INFRASTRUCTURE ═══════════════ -->
+  <section id="infra">
     <div class="section-inner">
-      <div class="section-eyebrow"><span class="num">// 02</span>SELF-HOSTED INFRASTRUCTURE</div>
-      <h2 class="section-title">Self-Hosted Infrastructure &amp; <span class="accent">Enterprise Simulation Lab</span>.</h2>
-      <p class="section-intro">A production-grade lab environment built to test the same disciplines I apply at work — <strong>clustered compute, segmented networking, centralized identity, automated operations, and end-to-end observability</strong>. Every layer is intentional. Every decision is documented.</p>
+      <div class="section-label">Infrastructure</div>
+      <h2 class="section-title">Self-hosted infrastructure &amp; <span class="accent">enterprise simulation lab</span>.</h2>
+      <p class="section-intro">A production-grade lab built to test the same disciplines I apply at work — <strong>clustered compute, segmented networking, centralized identity, automated operations, and end-to-end observability</strong>. Every layer is intentional. Every decision is documented.</p>
 
       <div class="layer-grid">
         <div class="layer-card" data-reveal>
@@ -1025,26 +977,20 @@
         </div>
       </div>
 
-      <!-- Architecture SVG diagram (animated build-out) -->
       <div class="arch-svg-wrap" id="arch-wrap">
         <svg class="arch-svg" viewBox="0 0 900 560" preserveAspectRatio="xMidYMid meet" aria-label="Architecture diagram showing the layered self-hosted infrastructure">
-          <!-- Layer 1: Internet / Edge -->
           <g class="arch-node" data-step="1">
-            <rect class="node-box cyan-stroke" x="320" y="20" width="260" height="48" rx="8"/>
+            <rect class="node-box accent-stroke" x="320" y="20" width="260" height="48" rx="8"/>
             <text class="node-label" x="450" y="42" text-anchor="middle">PUBLIC INTERNET</text>
             <text class="node-sub" x="450" y="58" text-anchor="middle">443 / 80 / DNS</text>
           </g>
           <path class="arrow" data-step="2" d="M 450 70 L 450 100" marker-end="url(#arrowhead)"/>
-
-          <!-- Layer 2: Edge / Auth -->
           <g class="arch-node" data-step="3">
-            <rect class="node-box violet-stroke" x="200" y="100" width="500" height="60" rx="8"/>
+            <rect class="node-box" x="200" y="100" width="500" height="60" rx="8"/>
             <text class="node-label" x="450" y="124" text-anchor="middle">REVERSE PROXY + AUTH LAYER</text>
             <text class="node-sub" x="450" y="142" text-anchor="middle">Nginx Proxy Manager  ◇  Authentik (Forward Auth + MFA)</text>
           </g>
           <path class="arrow" data-step="4" d="M 450 162 L 450 192" marker-end="url(#arrowhead)"/>
-
-          <!-- Layer 3: VLANs -->
           <g class="arch-node" data-step="5">
             <rect class="node-box" x="60" y="192" width="780" height="80" rx="8"/>
             <text class="node-label" x="450" y="216" text-anchor="middle">VLAN SEGMENTATION  —  UniFi managed</text>
@@ -1057,25 +1003,20 @@
             <g data-step="10"><rect class="vlan-cell" x="610" y="232" width="120" height="28" rx="4"/><text class="vlan-label" x="670" y="250" text-anchor="middle">MGMT</text></g>
           </g>
           <path class="arrow" data-step="11" d="M 450 272 L 450 304" marker-end="url(#arrowhead)"/>
-
-          <!-- Layer 4: Proxmox cluster -->
           <g class="arch-node" data-step="12">
-            <rect class="node-box cyan-stroke" x="80" y="304" width="740" height="232" rx="10"/>
+            <rect class="node-box accent-stroke" x="80" y="304" width="740" height="232" rx="10"/>
             <text class="node-label" x="450" y="328" text-anchor="middle">PROXMOX HA CLUSTER  —  Ceph distributed storage</text>
             <text class="node-sub" x="450" y="346" text-anchor="middle">Node A  ·  Node B  ·  Node C  (live migration · failover)</text>
           </g>
-          <!-- Workload boxes inside Proxmox -->
           <g data-step="13"><rect class="node-box" x="110" y="368" width="220" height="48" rx="6"/><text class="node-label" x="220" y="389" text-anchor="middle">Endpoint Lab</text><text class="node-sub" x="220" y="404" text-anchor="middle">Win10/11 · AAD · Autopilot</text></g>
           <g data-step="14"><rect class="node-box" x="340" y="368" width="220" height="48" rx="6"/><text class="node-label" x="450" y="389" text-anchor="middle">ZeksMedia</text><text class="node-sub" x="450" y="404" text-anchor="middle">Plex · *arr · Overseerr</text></g>
           <g data-step="15"><rect class="node-box" x="570" y="368" width="220" height="48" rx="6"/><text class="node-label" x="680" y="389" text-anchor="middle">Identity</text><text class="node-sub" x="680" y="404" text-anchor="middle">Authentik · LDAP</text></g>
           <g data-step="16"><rect class="node-box" x="110" y="430" width="340" height="48" rx="6"/><text class="node-label" x="280" y="451" text-anchor="middle">Observability</text><text class="node-sub" x="280" y="466" text-anchor="middle">Uptime · Logs · Gotify/ntfy alerting</text></g>
           <g data-step="17"><rect class="node-box" x="460" y="430" width="330" height="48" rx="6"/><text class="node-label" x="625" y="451" text-anchor="middle">Automation</text><text class="node-sub" x="625" y="466" text-anchor="middle">Docker stacks · PowerShell scheduler</text></g>
-          <g data-step="18"><rect class="node-box violet-stroke" x="110" y="492" width="680" height="34" rx="6"/><text class="node-label" x="450" y="513" text-anchor="middle">Backup &amp; Recovery — Proxmox Backup · Snapshot rotation · Off-host copies</text></g>
-
-          <!-- Arrowhead definition -->
+          <g data-step="18"><rect class="node-box accent-stroke" x="110" y="492" width="680" height="34" rx="6"/><text class="node-label" x="450" y="513" text-anchor="middle">Backup &amp; Recovery — Proxmox Backup · Snapshot rotation · Off-host copies</text></g>
           <defs>
             <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-              <polygon points="0 0, 8 3, 0 6" fill="#22d3ee"/>
+              <polygon points="0 0, 8 3, 0 6" fill="currentColor"/>
             </marker>
           </defs>
         </svg>
@@ -1083,17 +1024,17 @@
     </div>
   </section>
 
-  <!-- ═══════════════ 03 EXPERIENCE ═══════════════ -->
-  <section id="experience" class="scene">
+  <!-- ═══════════════ EXPERIENCE ═══════════════ -->
+  <section id="experience">
     <div class="section-inner">
-      <div class="section-eyebrow"><span class="num">// 03</span>EXPERIENCE</div>
-      <h2 class="section-title">Where I have <span class="accent">done the work.</span></h2>
+      <div class="section-label">Experience</div>
+      <h2 class="section-title">Where I have <span class="accent">done the work</span>.</h2>
       <div class="experience-list">
         <div class="exp" data-reveal>
-          <div class="exp-period">NOV 2023 — PRESENT</div>
+          <div class="exp-period">Nov 2023 — Present</div>
           <div>
-            <div class="exp-company"><span class="arrow">→</span>HKS Inc.</div>
-            <div class="exp-role">endpoint_engineer (intune) · dallas, tx</div>
+            <div class="exp-company">HKS Inc.</div>
+            <div class="exp-role">Endpoint Engineer (Intune) · Dallas, TX</div>
             <p class="exp-summary">Engineer and design the Microsoft Intune environment supporting 1,700 users and 2,300 endpoints across a global firm. Build Autopilot provisioning profiles, Conditional Access aligned with Zero Trust, BitLocker and Defender for Endpoint baselines, and Win32 packaging with detection rules. Reduced environment complexity by consolidating 3,600 Azure AD groups and 1,600 applications.</p>
             <div class="exp-tech"><span>Microsoft Intune</span><span>Autopilot</span><span>Conditional Access</span><span>Defender</span><span>BitLocker</span><span>Win32 Packaging</span><span>PowerShell</span></div>
           </div>
@@ -1101,8 +1042,8 @@
         <div class="exp" data-reveal>
           <div class="exp-period">2021 — 2023</div>
           <div>
-            <div class="exp-company"><span class="arrow">→</span>Citigroup</div>
-            <div class="exp-role">engineering_analyst_2 · endpoint_management · irving, tx</div>
+            <div class="exp-company">Citigroup</div>
+            <div class="exp-role">Engineering Analyst 2 · Endpoint Management · Irving, TX</div>
             <p class="exp-summary">Supported enterprise endpoint management for 300,000 devices using Microsoft Intune and SCCM in a hybrid Azure AD environment. Owned the AdminStudio platform for the global packaging team — standards, training, vendor governance. Authored Win32 and MSI packages. Automated patching, provisioning, and remediation with PowerShell and Microsoft Graph API.</p>
             <div class="exp-tech"><span>SCCM</span><span>Intune Co-Management</span><span>AdminStudio</span><span>Wise Package Studio</span><span>MasterPackager</span><span>Hybrid Azure AD</span><span>Microsoft Graph API</span></div>
           </div>
@@ -1110,8 +1051,8 @@
         <div class="exp" data-reveal>
           <div class="exp-period">2020 — 2021</div>
           <div>
-            <div class="exp-company"><span class="arrow">→</span>Bright Development</div>
-            <div class="exp-role">technical_pm / scrum_master · brooklyn, ny</div>
+            <div class="exp-company">Bright Development</div>
+            <div class="exp-role">Technical Project Manager · Brooklyn, NY</div>
             <p class="exp-summary">Led endpoint and DevOps initiatives including automation and CI/CD pipeline improvements. Implemented DevSecOps practices to improve system security and deployment workflows.</p>
             <div class="exp-tech"><span>DevSecOps</span><span>CI/CD</span><span>Agile</span><span>Scrum</span></div>
           </div>
@@ -1119,8 +1060,8 @@
         <div class="exp" data-reveal>
           <div class="exp-period">2017 — 2020</div>
           <div>
-            <div class="exp-company"><span class="arrow">→</span>Rising Star Technology Consulting</div>
-            <div class="exp-role">salesforce_admin / web_developer · herndon, va</div>
+            <div class="exp-company">Rising Star Technology Consulting</div>
+            <div class="exp-role">Salesforce Administrator · Web Developer · Herndon, VA</div>
             <p class="exp-summary">Managed user access, authentication, and system security within Salesforce environments. Developed internal tools and automation scripts to improve operational efficiency.</p>
             <div class="exp-tech"><span>Salesforce</span><span>Identity</span><span>Web Development</span></div>
           </div>
@@ -1129,110 +1070,111 @@
     </div>
   </section>
 
-  <!-- ═══════════════ 04 PROJECTS (window iris) ═══════════════ -->
-  <section id="projects" class="scene">
+  <!-- ═══════════════ PROJECTS ═══════════════ -->
+  <section id="projects">
     <div class="section-inner">
-      <div class="section-eyebrow"><span class="num">// 04</span>PROJECTS &amp; CASE STUDIES</div>
-      <h2 class="section-title">Selected work — <span class="accent">problem, solution, outcome.</span></h2>
-      <p class="section-intro">Each project is framed the way I would brief a peer: what I was trying to solve, the approach I took, the stack involved, and what changed because of it.</p>
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-title">Problem, solution, <span class="accent">outcome</span>.</h2>
+      <p class="section-intro">Each project framed the way I would brief a peer — what I was trying to solve, the approach I took, the stack involved, and what changed because of it.</p>
+
       <div class="case-grid">
 
         <div class="case" data-reveal>
-          <div class="case-meta"><span class="case-id">PRJ_001</span><span class="case-tag prod">PRODUCTION · ENTERPRISE</span></div>
-          <div class="case-context">CITIGROUP &middot; PLATFORM OWNERSHIP</div>
+          <div class="case-meta"><span class="case-num">01</span><span class="case-tag prod">Production · Enterprise</span></div>
+          <div class="case-context">Citigroup · Platform Ownership</div>
           <div class="case-title">AdminStudio Application Owner</div>
-          <div class="case-block"><div class="case-block-label">PROBLEM</div><p>Citi's global packaging team supported a 300K-device fleet without standardized tooling, training, or governance.</p></div>
-          <div class="case-block"><div class="case-block-label">SOLUTION</div><p>Took ownership of AdminStudio end-to-end. Defined packaging standards, ran internal training, managed the vendor relationship, and drove platform health as a product.</p></div>
-          <div class="case-block"><div class="case-block-label">STACK</div><div class="case-stack"><span class="tool">AdminStudio</span><span class="pipe">·</span><span class="tool">MasterPackager</span><span class="pipe">·</span><span class="tool">Wise Package Studio</span><span class="pipe">·</span><span class="tool">SCCM</span><span class="pipe">·</span><span class="tool">PowerShell</span></div></div>
-          <div class="case-block"><div class="case-block-label">OUTCOME</div><ul><li>Packaging standards documented and adopted globally</li><li>Team training cadence established</li><li>Platform health became measurable</li></ul></div>
+          <div class="case-block"><div class="case-block-label">Problem</div><p>Citi's global packaging team supported a 300K-device fleet without standardized tooling, training, or governance.</p></div>
+          <div class="case-block"><div class="case-block-label">Solution</div><p>Took ownership of AdminStudio end-to-end. Defined packaging standards, ran internal training, managed the vendor relationship, and drove platform health as a product.</p></div>
+          <div class="case-block"><div class="case-block-label">Stack</div><div class="case-stack"><span class="tool">AdminStudio</span><span class="pipe">·</span><span class="tool">MasterPackager</span><span class="pipe">·</span><span class="tool">Wise Package Studio</span><span class="pipe">·</span><span class="tool">SCCM</span><span class="pipe">·</span><span class="tool">PowerShell</span></div></div>
+          <div class="case-block"><div class="case-block-label">Outcome</div><ul><li>Packaging standards documented and adopted globally</li><li>Team training cadence established</li><li>Platform health became measurable</li></ul></div>
         </div>
 
         <div class="case" data-reveal>
-          <div class="case-meta"><span class="case-id">PRJ_002</span><span class="case-tag prod">PRODUCTION · ENTERPRISE</span></div>
-          <div class="case-context">HKS INC. &middot; INTUNE ESTATE BUILD</div>
+          <div class="case-meta"><span class="case-num">02</span><span class="case-tag prod">Production · Enterprise</span></div>
+          <div class="case-context">HKS Inc. · Intune Estate Build</div>
           <div class="case-title">Intune Environment Engineering at Scale</div>
-          <div class="case-block"><div class="case-block-label">PROBLEM</div><p>Fragmented endpoint estate with 3,600 Azure AD groups and 1,600 applications. Inconsistent compliance posture.</p></div>
-          <div class="case-block"><div class="case-block-label">SOLUTION</div><p>End-to-end Intune build: Autopilot provisioning, Conditional Access aligned with Zero Trust, BitLocker + Defender baselines, Win32 packaging with detection rules.</p></div>
-          <div class="case-block"><div class="case-block-label">STACK</div><div class="case-stack"><span class="tool">Microsoft Intune</span><span class="pipe">·</span><span class="tool">Autopilot</span><span class="pipe">·</span><span class="tool">Conditional Access</span><span class="pipe">·</span><span class="tool">Defender</span><span class="pipe">·</span><span class="tool">BitLocker</span></div></div>
-          <div class="case-block"><div class="case-block-label">OUTCOME</div><ul><li>1,700 users / 2,300 endpoints on a clean estate</li><li>3,600 AAD groups + 1,600 apps consolidated</li><li>Documented SOPs in production</li></ul></div>
+          <div class="case-block"><div class="case-block-label">Problem</div><p>Fragmented endpoint estate with 3,600 Azure AD groups and 1,600 applications. Inconsistent compliance posture.</p></div>
+          <div class="case-block"><div class="case-block-label">Solution</div><p>End-to-end Intune build: Autopilot provisioning, Conditional Access aligned with Zero Trust, BitLocker + Defender baselines, Win32 packaging with detection rules.</p></div>
+          <div class="case-block"><div class="case-block-label">Stack</div><div class="case-stack"><span class="tool">Microsoft Intune</span><span class="pipe">·</span><span class="tool">Autopilot</span><span class="pipe">·</span><span class="tool">Conditional Access</span><span class="pipe">·</span><span class="tool">Defender</span><span class="pipe">·</span><span class="tool">BitLocker</span></div></div>
+          <div class="case-block"><div class="case-block-label">Outcome</div><ul><li>1,700 users / 2,300 endpoints on a clean estate</li><li>3,600 AAD groups + 1,600 apps consolidated</li><li>Documented SOPs in production</li></ul></div>
         </div>
 
         <div class="case" data-reveal>
-          <div class="case-meta"><span class="case-id">PRJ_003</span><span class="case-tag prod">PRODUCTION · LAB</span></div>
-          <div class="case-context">LAB &middot; IDENTITY</div>
+          <div class="case-meta"><span class="case-num">03</span><span class="case-tag prod">Production · Lab</span></div>
+          <div class="case-context">Lab · Identity</div>
           <div class="case-title">Centralized Identity &amp; SSO with Authentik</div>
-          <div class="case-block"><div class="case-block-label">PROBLEM</div><p>Multiple self-hosted services with separate logins. No MFA enforcement.</p></div>
-          <div class="case-block"><div class="case-block-label">SOLUTION</div><p>Forward-auth SSO with Authentik fronted by Nginx Proxy Manager. Single identity layer, MFA enforced across all gated services.</p></div>
-          <div class="case-block"><div class="case-block-label">STACK</div><div class="case-stack"><span class="tool">Authentik</span><span class="pipe">·</span><span class="tool">Nginx Proxy Manager</span><span class="pipe">·</span><span class="tool">Docker</span><span class="pipe">·</span><span class="tool">TOTP MFA</span></div></div>
-          <div class="case-block"><div class="case-block-label">OUTCOME</div><ul><li>Single login across services; MFA enforced everywhere</li><li>Same pattern Conditional Access enforces in Entra ID</li></ul></div>
+          <div class="case-block"><div class="case-block-label">Problem</div><p>Multiple self-hosted services with separate logins. No MFA enforcement.</p></div>
+          <div class="case-block"><div class="case-block-label">Solution</div><p>Forward-auth SSO with Authentik fronted by Nginx Proxy Manager. Single identity layer, MFA enforced across all gated services.</p></div>
+          <div class="case-block"><div class="case-block-label">Stack</div><div class="case-stack"><span class="tool">Authentik</span><span class="pipe">·</span><span class="tool">Nginx Proxy Manager</span><span class="pipe">·</span><span class="tool">Docker</span><span class="pipe">·</span><span class="tool">TOTP MFA</span></div></div>
+          <div class="case-block"><div class="case-block-label">Outcome</div><ul><li>Single login across services; MFA enforced everywhere</li><li>Same pattern Conditional Access enforces in Entra ID</li></ul></div>
         </div>
 
         <div class="case" data-reveal>
-          <div class="case-meta"><span class="case-id">PRJ_004</span><span class="case-tag prod">PRODUCTION · LAB</span></div>
-          <div class="case-context">LAB &middot; COMPUTE</div>
+          <div class="case-meta"><span class="case-num">04</span><span class="case-tag prod">Production · Lab</span></div>
+          <div class="case-context">Lab · Compute</div>
           <div class="case-title">Proxmox HA Cluster + Ceph Storage</div>
-          <div class="case-block"><div class="case-block-label">PROBLEM</div><p>Single-host VM environment was a single point of failure. No live-migration, no shared storage.</p></div>
-          <div class="case-block"><div class="case-block-label">SOLUTION</div><p>Multi-node Proxmox cluster with Ceph distributed storage and HA failover for critical VMs.</p></div>
-          <div class="case-block"><div class="case-block-label">STACK</div><div class="case-stack"><span class="tool">Proxmox VE</span><span class="pipe">·</span><span class="tool">Ceph</span><span class="pipe">·</span><span class="tool">ZFS</span></div></div>
-          <div class="case-block"><div class="case-block-label">OUTCOME</div><ul><li>HA failover for critical workloads</li><li>Maintenance possible without downtime</li></ul></div>
+          <div class="case-block"><div class="case-block-label">Problem</div><p>Single-host VM environment was a single point of failure. No live-migration, no shared storage.</p></div>
+          <div class="case-block"><div class="case-block-label">Solution</div><p>Multi-node Proxmox cluster with Ceph distributed storage and HA failover for critical VMs.</p></div>
+          <div class="case-block"><div class="case-block-label">Stack</div><div class="case-stack"><span class="tool">Proxmox VE</span><span class="pipe">·</span><span class="tool">Ceph</span><span class="pipe">·</span><span class="tool">ZFS</span></div></div>
+          <div class="case-block"><div class="case-block-label">Outcome</div><ul><li>HA failover for critical workloads</li><li>Maintenance possible without downtime</li></ul></div>
         </div>
 
         <div class="case" data-reveal>
-          <div class="case-meta"><span class="case-id">PRJ_005</span><span class="case-tag prod">PRODUCTION · LAB</span></div>
-          <div class="case-context">LAB &middot; NETWORKING &amp; SECURITY</div>
+          <div class="case-meta"><span class="case-num">05</span><span class="case-tag prod">Production · Lab</span></div>
+          <div class="case-context">Lab · Networking &amp; Security</div>
           <div class="case-title">VLAN-Segmented Network Architecture</div>
-          <div class="case-block"><div class="case-block-label">PROBLEM</div><p>Flat network — trusted devices, IoT, and exposed services on the same broadcast domain.</p></div>
-          <div class="case-block"><div class="case-block-label">SOLUTION</div><p>5-VLAN segmentation with explicit firewall rules; Zero Trust principles applied as allow-list policy.</p></div>
-          <div class="case-block"><div class="case-block-label">STACK</div><div class="case-stack"><span class="tool">UniFi</span><span class="pipe">·</span><span class="tool">VLAN tagging</span><span class="pipe">·</span><span class="tool">L3 firewall</span></div></div>
-          <div class="case-block"><div class="case-block-label">OUTCOME</div><ul><li>Lateral movement contained at the network layer</li><li>Mirrors enterprise Conditional Access mindset</li></ul></div>
+          <div class="case-block"><div class="case-block-label">Problem</div><p>Flat network — trusted devices, IoT, and exposed services on the same broadcast domain.</p></div>
+          <div class="case-block"><div class="case-block-label">Solution</div><p>5-VLAN segmentation with explicit firewall rules; Zero Trust principles applied as allow-list policy.</p></div>
+          <div class="case-block"><div class="case-block-label">Stack</div><div class="case-stack"><span class="tool">UniFi</span><span class="pipe">·</span><span class="tool">VLAN tagging</span><span class="pipe">·</span><span class="tool">L3 firewall</span></div></div>
+          <div class="case-block"><div class="case-block-label">Outcome</div><ul><li>Lateral movement contained at the network layer</li><li>Mirrors enterprise Conditional Access mindset</li></ul></div>
         </div>
 
         <div class="case" data-reveal>
-          <div class="case-meta"><span class="case-id">PRJ_006</span><span class="case-tag prod">PRODUCTION · LAB</span></div>
-          <div class="case-context">LAB &middot; CONTENT DELIVERY</div>
+          <div class="case-meta"><span class="case-num">06</span><span class="case-tag prod">Production · Lab</span></div>
+          <div class="case-context">Lab · Content Delivery</div>
           <div class="case-title">ZeksMedia — Content Delivery &amp; Request Automation</div>
-          <div class="case-block"><div class="case-block-label">PROBLEM</div><p>Manual content sourcing and delivery; no end-user request workflow.</p></div>
-          <div class="case-block"><div class="case-block-label">SOLUTION</div><p>Self-hosted media platform behind reverse proxy and SSO. Automated content management via the *arr stack with Overseerr.</p></div>
-          <div class="case-block"><div class="case-block-label">STACK</div><div class="case-stack"><span class="tool">Plex/Jellyfin</span><span class="pipe">·</span><span class="tool">Sonarr</span><span class="pipe">·</span><span class="tool">Radarr</span><span class="pipe">·</span><span class="tool">Overseerr</span></div></div>
-          <div class="case-block"><div class="case-block-label">OUTCOME</div><ul><li>End-user request workflow automated end-to-end</li><li>Same app-lifecycle discipline as enterprise endpoint apps</li></ul></div>
+          <div class="case-block"><div class="case-block-label">Problem</div><p>Manual content sourcing and delivery; no end-user request workflow.</p></div>
+          <div class="case-block"><div class="case-block-label">Solution</div><p>Self-hosted media platform behind reverse proxy and SSO. Automated content management via the *arr stack with Overseerr.</p></div>
+          <div class="case-block"><div class="case-block-label">Stack</div><div class="case-stack"><span class="tool">Plex/Jellyfin</span><span class="pipe">·</span><span class="tool">Sonarr</span><span class="pipe">·</span><span class="tool">Radarr</span><span class="pipe">·</span><span class="tool">Overseerr</span></div></div>
+          <div class="case-block"><div class="case-block-label">Outcome</div><ul><li>End-user request workflow automated end-to-end</li><li>Same app-lifecycle discipline as enterprise endpoint apps</li></ul></div>
         </div>
 
         <div class="case" data-reveal>
-          <div class="case-meta"><span class="case-id">PRJ_007</span><span class="case-tag dev">IN_DEVELOPMENT</span></div>
-          <div class="case-context">LAB &middot; AUTOMATION</div>
+          <div class="case-meta"><span class="case-num">07</span><span class="case-tag dev">In Development</span></div>
+          <div class="case-context">Lab · Automation</div>
           <div class="case-title">Update Monitoring Tool</div>
-          <div class="case-block"><div class="case-block-label">PROBLEM</div><p>No single pane to track update status across services and VMs.</p></div>
-          <div class="case-block"><div class="case-block-label">SOLUTION</div><p>Custom dashboard polling endpoints. Push alerts to Gotify / ntfy when components fall behind baseline.</p></div>
-          <div class="case-block"><div class="case-block-label">STACK</div><div class="case-stack"><span class="tool">Docker</span><span class="pipe">·</span><span class="tool">Gotify / ntfy</span><span class="pipe">·</span><span class="tool">Custom polling</span></div></div>
-          <div class="case-block"><div class="case-block-label">OUTCOME</div><ul><li>v0 dashboard live in lab</li><li>Same observability discipline I want in any endpoint estate</li></ul></div>
+          <div class="case-block"><div class="case-block-label">Problem</div><p>No single pane to track update status across services and VMs.</p></div>
+          <div class="case-block"><div class="case-block-label">Solution</div><p>Custom dashboard polling endpoints. Push alerts to Gotify / ntfy when components fall behind baseline.</p></div>
+          <div class="case-block"><div class="case-block-label">Stack</div><div class="case-stack"><span class="tool">Docker</span><span class="pipe">·</span><span class="tool">Gotify / ntfy</span><span class="pipe">·</span><span class="tool">Custom polling</span></div></div>
+          <div class="case-block"><div class="case-block-label">Outcome</div><ul><li>v0 dashboard live in lab</li><li>Same observability discipline I want in any endpoint estate</li></ul></div>
         </div>
 
         <div class="case" data-reveal>
-          <div class="case-meta"><span class="case-id">PRJ_008</span><span class="case-tag prod">PRODUCTION · ENTERPRISE</span></div>
-          <div class="case-context">ENTERPRISE &middot; AUTOMATION</div>
+          <div class="case-meta"><span class="case-num">08</span><span class="case-tag prod">Production · Enterprise</span></div>
+          <div class="case-context">Enterprise · Automation</div>
           <div class="case-title">PowerShell Endpoint Automation Library</div>
-          <div class="case-block"><div class="case-block-label">PROBLEM</div><p>Manual toil at scale — detection, remediation, compliance reporting all ticket-driven.</p></div>
-          <div class="case-block"><div class="case-block-label">SOLUTION</div><p>Library of reusable PowerShell scripts and Microsoft Graph API automations.</p></div>
-          <div class="case-block"><div class="case-block-label">STACK</div><div class="case-stack"><span class="tool">PowerShell</span><span class="pipe">·</span><span class="tool">MS Graph API</span><span class="pipe">·</span><span class="tool">Intune</span><span class="pipe">·</span><span class="tool">SCCM</span></div></div>
-          <div class="case-block"><div class="case-block-label">OUTCOME</div><ul><li>Repeatable detection / remediation across estates</li><li>Compliance reporting on demand</li></ul></div>
+          <div class="case-block"><div class="case-block-label">Problem</div><p>Manual toil at scale — detection, remediation, compliance reporting all ticket-driven.</p></div>
+          <div class="case-block"><div class="case-block-label">Solution</div><p>Library of reusable PowerShell scripts and Microsoft Graph API automations.</p></div>
+          <div class="case-block"><div class="case-block-label">Stack</div><div class="case-stack"><span class="tool">PowerShell</span><span class="pipe">·</span><span class="tool">MS Graph API</span><span class="pipe">·</span><span class="tool">Intune</span><span class="pipe">·</span><span class="tool">SCCM</span></div></div>
+          <div class="case-block"><div class="case-block-label">Outcome</div><ul><li>Repeatable detection / remediation across estates</li><li>Compliance reporting on demand</li></ul></div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ 05 SKILLS MAPPING ═══════════════ -->
-  <section id="mapping" class="scene">
+  <!-- ═══════════════ MAPPING ═══════════════ -->
+  <section id="mapping">
     <div class="section-inner">
-      <div class="section-eyebrow"><span class="num">// 05</span>HOMELAB → ENTERPRISE</div>
-      <h2 class="section-title">Lab work, mapped to <span class="accent">enterprise skills.</span></h2>
+      <div class="section-label">Skills Map</div>
+      <h2 class="section-title">Lab work, mapped to <span class="accent">enterprise skills</span>.</h2>
       <p class="section-intro">The same disciplines, different scale. The lab is where I prototype the patterns I bring to clients — not the other way around.</p>
 
       <div class="mapping-wrap">
         <div class="mapping-row header is-visible">
-          <div class="mapping-cell">LAB / SELF-HOSTED</div>
+          <div class="mapping-cell">Lab / Self-Hosted</div>
           <div class="mapping-cell arrow">→</div>
-          <div class="mapping-cell">ENTERPRISE EQUIVALENT</div>
+          <div class="mapping-cell">Enterprise Equivalent</div>
         </div>
         <div class="mapping-row" data-reveal>
           <div class="mapping-cell lab">VLAN segmentation &amp; firewall rules</div>
@@ -1283,10 +1225,10 @@
     </div>
   </section>
 
-  <!-- ═══════════════ 06 CERTIFICATIONS ═══════════════ -->
-  <section id="certifications" class="scene">
+  <!-- ═══════════════ CERTIFICATIONS ═══════════════ -->
+  <section id="certifications">
     <div class="section-inner">
-      <div class="section-eyebrow"><span class="num">// 06</span>CERTIFICATIONS</div>
+      <div class="section-label">Certifications</div>
       <h2 class="section-title">Active <span class="accent">credentials</span> and roadmap.</h2>
       <div class="cert-grid">
         <div class="cert-item" data-reveal><div class="cert-status-icon active"></div><div class="cert-body"><div class="cert-name">Microsoft Certified: Endpoint Administrator Associate (MD-102)</div><div class="cert-status active-text">Active</div></div></div>
@@ -1301,65 +1243,63 @@
     </div>
   </section>
 
-  <!-- ═══════════════ 07 ECOSYSTEM ═══════════════ -->
-  <section id="ecosystem" class="scene">
+  <!-- ═══════════════ ECOSYSTEM ═══════════════ -->
+  <section id="ecosystem">
     <div class="section-inner">
-      <div class="section-eyebrow"><span class="num">// 07</span>ECOSYSTEM &amp; LESSONS</div>
-      <h2 class="section-title">More than the <span class="accent">portfolio.</span></h2>
+      <div class="section-label">Ecosystem &amp; Lessons</div>
+      <h2 class="section-title">More than the <span class="accent">portfolio</span>.</h2>
       <p class="section-intro">The lab feeds the writing. The writing feeds the work. Below: the brand surface that links everything together, and a place to surface the failures and fixes that taught me the most.</p>
 
-      <div class="ecosystem-grid" style="margin-bottom: 36px;">
-        <a href="#" class="eco-card magnetic-card" target="_blank" rel="noopener" id="link-rooted" data-reveal>
-          <div class="eco-tag">BLOG · WRITING</div>
+      <div class="ecosystem-grid" style="margin-bottom: 40px;">
+        <a href="#" class="eco-card" target="_blank" rel="noopener" id="link-rooted" data-reveal>
+          <div class="eco-tag">Blog · Writing</div>
           <div class="eco-name">RootedInTech</div>
           <div class="eco-desc">Long-form writing on endpoint engineering, Microsoft Intune, identity, and self-hosted infrastructure. Tutorials, build logs, and architecture deep-dives.</div>
-          <div class="eco-link">visit blog →</div>
+          <div class="eco-link">Visit blog →</div>
         </a>
-        <a href="#" class="eco-card magnetic-card" target="_blank" rel="noopener" id="link-zeks" data-reveal>
-          <div class="eco-tag">SERVICE · INFRASTRUCTURE</div>
+        <a href="#" class="eco-card" target="_blank" rel="noopener" id="link-zeks" data-reveal>
+          <div class="eco-tag">Service · Infrastructure</div>
           <div class="eco-name">ZeksMedia</div>
           <div class="eco-desc">Self-hosted content delivery and request automation system, running on the same Proxmox + Authentik + reverse-proxy stack documented above.</div>
-          <div class="eco-link">view service →</div>
+          <div class="eco-link">View service →</div>
         </a>
       </div>
 
-      <h3 style="font-family: var(--display); font-size: 22px; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.015em;">Lessons learned — the failures that taught me the most</h3>
-      <p class="section-intro" style="margin-bottom: 16px;">Recruiters value debugging stories more than perfect setups. This section gets populated as I document each one.</p>
+      <h3 style="font-family: var(--display); font-size: 24px; font-weight: 600; color: var(--ink); margin-bottom: 14px; letter-spacing: -0.02em;">Lessons learned — the failures that taught me the most</h3>
+      <p class="section-intro" style="margin-bottom: 18px;">Recruiters value debugging stories more than perfect setups. This section gets populated as I document each one.</p>
 
       <div class="placeholder-card">
-        <span class="label">[ TO BE FILLED ]</span>
+        <span class="label">[ To be filled ]</span>
         Three slots reserved here for the failure stories you want recruiters to see — Ceph rebalancing pain, a network misconfiguration that taught a lesson, a Docker volume permissions issue, etc. Drop them in plain text and I will format.
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ 08 CONTACT ═══════════════ -->
-  <section id="contact" class="contact-section scene">
+  <!-- ═══════════════ CONTACT ═══════════════ -->
+  <section id="contact" class="contact-section">
     <div class="section-inner">
       <div class="contact-content">
-        <div class="section-eyebrow"><span class="num">// 08</span>CONTACT</div>
-        <h2 class="section-title">Let us <span class="accent">talk.</span></h2>
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">Let's <span class="accent">talk</span>.</h2>
         <p>Open to senior endpoint, modern workplace, and endpoint security roles. Remote preferred — based in Aubrey, TX. Bilingual French and English. U.S. Citizen, no sponsorship needed.</p>
         <div class="contact-links">
-          <a href="mailto:bdzekashu@gmail.com" class="btn btn-primary magnetic">EMAIL <span class="arrow">→</span></a>
-          <a href="https://www.linkedin.com/in/bernard-dzekashu/" class="btn btn-secondary magnetic" target="_blank" rel="noopener">LINKEDIN <span class="arrow">→</span></a>
-          <a href="cv.pdf" class="btn btn-secondary magnetic" download>DOWNLOAD_CV <span class="arrow">→</span></a>
+          <a href="mailto:bdzekashu@gmail.com" class="btn btn-primary magnetic">Email <span class="arrow">→</span></a>
+          <a href="https://www.linkedin.com/in/bernard-dzekashu/" class="btn btn-secondary magnetic" target="_blank" rel="noopener">LinkedIn <span class="arrow">→</span></a>
+          <a href="cv.pdf" class="btn btn-secondary magnetic" download>Download CV <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
   </section>
 
   <footer>
-    <span class="version">[v3.0.0]</span>
-    <span class="sep">//</span>
-    &copy; 2026 BERNARD DZEKASHU
-    <span class="sep">//</span>
-    <span class="veteran">U.S. ARMY VETERAN</span>
-    <span class="sep">//</span>
-    BUILT FOR HIRING TEAMS WHO CARE ABOUT THE WORK
+    Bernard Dzekashu · Aubrey, TX
+    <span class="sep">·</span>
+    <span class="veteran">U.S. Army Veteran</span>
+    <span class="sep">·</span>
+    Built by hand
   </footer>
 
-  <!-- ═══════════════ MOTION ENGINE ═══════════════ -->
+  <!-- ═══════════════ MOTION & THEME ═══════════════ -->
   <script>
   (function() {
     'use strict';
@@ -1367,8 +1307,18 @@
     const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isTouch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
 
-    // ───────── 1. SCROLL PROGRESS BAR ─────────
-    const scrollBar = document.querySelector('.scroll-progress');
+    // ───────── THEME TOGGLE ─────────
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('bd-theme', next); } catch(e) {}
+      });
+    }
+
+    // ───────── SCROLL PROGRESS ─────────
     function updateScrollProgress() {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const p = max > 0 ? window.scrollY / max : 0;
@@ -1377,48 +1327,26 @@
     window.addEventListener('scroll', updateScrollProgress, { passive: true });
     updateScrollProgress();
 
-    // ───────── 2. HERO TYPED TAGLINE ─────────
-    const taglineText = 'Senior_Endpoint & Modern_Workplace_Engineer';
-    const taglineEl = document.getElementById('tagline-typed');
-    if (taglineEl && !reduced) {
-      let i = 0;
-      function typeStep() {
-        if (i <= taglineText.length) {
-          taglineEl.textContent = taglineText.slice(0, i);
-          i++;
-          setTimeout(typeStep, 35 + Math.random() * 30);
-        }
-      }
-      setTimeout(typeStep, 350);
-    } else if (taglineEl) {
-      taglineEl.textContent = taglineText;
-    }
-
-    // ───────── 3. SPLIT-CONVERGE HERO TITLE ─────────
+    // ───────── HERO TITLE FADE-UP ─────────
     if (!reduced) {
       const heroWords = document.querySelectorAll('.hero h1 .word');
-      heroWords.forEach((w) => {
-        const side = w.dataset.wordSide;
-        const start = side === 'left' ? '-60vw' : '60vw';
-        w.style.transform = `translateX(${start})`;
+      heroWords.forEach((w, idx) => {
         w.style.opacity = '0';
+        w.style.transform = 'translateY(24px)';
+        w.style.transition = `transform .9s cubic-bezier(.2,.8,.2,1) ${0.15 + idx * 0.1}s, opacity .8s ease ${0.15 + idx * 0.1}s`;
       });
-      // Trigger entrance on next frame
       requestAnimationFrame(() => {
-        heroWords.forEach((w, idx) => {
-          w.style.transition = `transform 1.0s cubic-bezier(.2,.8,.2,1) ${0.15 + idx * 0.08}s, opacity 0.7s ease ${0.15 + idx * 0.08}s`;
-          w.style.transform = 'translateX(0)';
+        heroWords.forEach(w => {
           w.style.opacity = '1';
+          w.style.transform = 'translateY(0)';
         });
       });
     }
 
-    // ───────── 4. TERMINAL TYPING ANIMATION ─────────
+    // ───────── TERMINAL TYPING ─────────
     if (!reduced) {
       const lines = document.querySelectorAll('.term-typed');
-      const dimLines = document.querySelectorAll('.term-line[data-line]:not(:has(.term-typed))');
       let lineIdx = 0;
-
       function typeNextLine() {
         if (lineIdx >= lines.length) return;
         const line = lines[lineIdx];
@@ -1431,7 +1359,6 @@
             charIdx++;
             setTimeout(typeChar, 18 + Math.random() * 22);
           } else {
-            // Reveal the corresponding dim line if any
             const lineNum = parseInt(line.dataset.line, 10);
             const nextDim = document.querySelector(`.term-line[data-line="${lineNum + 1}"]`);
             if (nextDim) {
@@ -1445,18 +1372,15 @@
         }
         typeChar();
       }
-
-      // Hide dim lines initially
       document.querySelectorAll('.term-line.dim[data-line]').forEach(l => { l.style.opacity = '0'; });
-      setTimeout(typeNextLine, 1400);
+      setTimeout(typeNextLine, 1200);
     }
 
-    // ───────── 5. WORD-BY-WORD SCROLL LIGHTING (About section) ─────────
+    // ───────── WORD-BY-WORD SCROLL LIGHTING ─────────
     function splitParagraphIntoWords(p) {
-      // Walk children: text nodes get split into words; element nodes (e.g., .brand spans) preserved
       const newChildren = [];
       Array.from(p.childNodes).forEach(node => {
-        if (node.nodeType === 3) { // TEXT_NODE
+        if (node.nodeType === 3) {
           const tokens = node.textContent.split(/(\s+)/);
           tokens.forEach(tok => {
             if (tok.match(/^\s+$/)) {
@@ -1468,8 +1392,7 @@
               newChildren.push(span);
             }
           });
-        } else if (node.nodeType === 1) { // ELEMENT_NODE
-          // If it's a .brand span, treat the whole element as one "word" (highlighted always)
+        } else if (node.nodeType === 1) {
           if (node.classList && node.classList.contains('brand')) {
             node.classList.add('word');
             newChildren.push(node);
@@ -1496,7 +1419,6 @@
         if (!aboutSection) return;
         const rect = aboutSection.getBoundingClientRect();
         const vh = window.innerHeight;
-        // Lighting active range: from top of section reaching 80% of viewport, until top reaches -50% of section height
         const start = vh * 0.8;
         const end = -aboutSection.offsetHeight * 0.4;
         const total = start - end;
@@ -1504,7 +1426,6 @@
         const litCount = Math.round(progress * allLitWords.length);
         allLitWords.forEach((w, i) => {
           if (w.classList.contains('brand')) {
-            // brand always lit
             w.classList.add('lit');
           } else if (i < litCount) {
             w.classList.add('lit');
@@ -1517,16 +1438,14 @@
       window.addEventListener('resize', updateLitWords);
       updateLitWords();
     } else {
-      // Reduced motion: light everything
       allLitWords.forEach(w => w.classList.add('lit'));
     }
 
-    // ───────── 6. INTERSECTION OBSERVER REVEAL ─────────
+    // ───────── INTERSECTION REVEAL ─────────
     const revealEls = document.querySelectorAll('[data-reveal]');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          // Stagger delay based on position in batch
           setTimeout(() => entry.target.classList.add('is-visible'), i * 60);
           revealObserver.unobserve(entry.target);
         }
@@ -1534,7 +1453,7 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => revealObserver.observe(el));
 
-    // ───────── 7. SKILL PILLS STAGGER ─────────
+    // ───────── SKILL PILLS STAGGER ─────────
     const skillRow = document.getElementById('skill-row');
     if (skillRow) {
       const pills = skillRow.querySelectorAll('.skill-pill');
@@ -1542,7 +1461,7 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             pills.forEach((pill, idx) => {
-              setTimeout(() => pill.classList.add('is-visible'), idx * 35);
+              setTimeout(() => pill.classList.add('is-visible'), idx * 30);
             });
             skillObserver.unobserve(entry.target);
           }
@@ -1551,7 +1470,7 @@
       skillObserver.observe(skillRow);
     }
 
-    // ───────── 8. ARCHITECTURE DIAGRAM SCROLL BUILD ─────────
+    // ───────── ARCH DIAGRAM BUILD ─────────
     const archWrap = document.getElementById('arch-wrap');
     if (archWrap) {
       const steps = archWrap.querySelectorAll('[data-step]');
@@ -1560,12 +1479,8 @@
           if (entry.isIntersecting) {
             steps.forEach((step, idx) => {
               setTimeout(() => {
-                // Apply is-visible to the step element itself AND its child rect/text
                 step.classList.add('is-visible');
                 step.querySelectorAll('rect, text, path').forEach(el => el.classList.add('is-visible'));
-                if (step.tagName === 'rect' || step.tagName === 'text' || step.tagName === 'path') {
-                  step.classList.add('is-visible');
-                }
               }, idx * 130);
             });
             archObserver.unobserve(entry.target);
@@ -1575,31 +1490,37 @@
       archObserver.observe(archWrap);
     }
 
-    // ───────── 9. MAGNETIC HOVER ON BUTTONS ─────────
+    // ───────── MAGNETIC HOVER ─────────
     if (!reduced && !isTouch) {
       document.querySelectorAll('.magnetic').forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
           const rect = btn.getBoundingClientRect();
           const x = e.clientX - rect.left - rect.width / 2;
           const y = e.clientY - rect.top - rect.height / 2;
-          btn.style.transform = `translate(${x * 0.18}px, ${y * 0.25}px) translateY(-1px)`;
+          btn.style.transform = `translate(${x * 0.15}px, ${y * 0.20}px) translateY(-1px)`;
         });
-        btn.addEventListener('mouseleave', () => {
-          btn.style.transform = '';
-        });
+        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
       });
     }
 
-    // ───────── 10. CANVAS PARTICLE NETWORK ─────────
+    // ───────── CANVAS DRIFT (subtle dust, no connecting lines) ─────────
     if (!reduced) {
       const canvas = document.getElementById('cyber-canvas');
       if (canvas && canvas.getContext) {
         const ctx = canvas.getContext('2d');
-        const NUM = 48, MAX_DIST = 140;
+        const NUM = 26;
         const dpr = window.devicePixelRatio || 1;
         let w = 0, h = 0;
         const particles = [];
         let raf = null;
+        let particleColor = 'rgba(217, 119, 87, 0.55)'; // terracotta default
+
+        function resolveColor() {
+          const theme = document.documentElement.getAttribute('data-theme');
+          particleColor = theme === 'light'
+            ? 'rgba(176, 74, 44, 0.40)'
+            : 'rgba(217, 119, 87, 0.55)';
+        }
 
         function resize() {
           const rect = canvas.getBoundingClientRect();
@@ -1615,13 +1536,14 @@
             particles.push({
               x: Math.random() * w,
               y: Math.random() * h,
-              vx: (Math.random() - 0.5) * 0.25,
-              vy: (Math.random() - 0.5) * 0.25,
-              r: 1 + Math.random() * 1.4
+              vx: (Math.random() - 0.5) * 0.13,
+              vy: (Math.random() - 0.5) * 0.13,
+              r: 0.8 + Math.random() * 1.4
             });
           }
         }
         function step() {
+          resolveColor();
           ctx.clearRect(0, 0, w, h);
           for (const p of particles) {
             p.x += p.vx; p.y += p.vy;
@@ -1630,23 +1552,8 @@
             if (p.x < 0) p.x = 0; if (p.x > w) p.x = w;
             if (p.y < 0) p.y = 0; if (p.y > h) p.y = h;
           }
-          ctx.lineWidth = 1;
-          for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-              const a = particles[i], b = particles[j];
-              const dx = a.x - b.x, dy = a.y - b.y;
-              const d = Math.sqrt(dx * dx + dy * dy);
-              if (d < MAX_DIST) {
-                const op = (1 - d / MAX_DIST) * 0.34;
-                ctx.strokeStyle = 'rgba(34, 211, 238, ' + op + ')';
-                ctx.beginPath();
-                ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-                ctx.stroke();
-              }
-            }
-          }
+          ctx.fillStyle = particleColor;
           for (const p of particles) {
-            ctx.fillStyle = 'rgba(167, 139, 250, 0.78)';
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
             ctx.fill();
@@ -1665,19 +1572,6 @@
           else if (!raf) { step(); }
         });
       }
-    }
-
-    // ───────── 11. PARALLAX ON GHOST TEXT ─────────
-    if (!reduced && !isTouch) {
-      const ghostLeft = document.querySelector('.ghost-text.left');
-      const ghostRight = document.querySelector('.ghost-text.right');
-      function updateGhostParallax() {
-        const sy = window.scrollY;
-        if (ghostLeft) ghostLeft.style.transform = `translateY(calc(-15% + ${sy * -0.08}px)) translateX(${sy * -0.04}px)`;
-        if (ghostRight) ghostRight.style.transform = `translateY(calc(15% + ${sy * -0.05}px)) translateX(${sy * 0.04}px)`;
-      }
-      window.addEventListener('scroll', updateGhostParallax, { passive: true });
-      updateGhostParallax();
     }
 
   })();
