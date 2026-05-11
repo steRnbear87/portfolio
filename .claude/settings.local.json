@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Start-Process python -ArgumentList \"-m\", \"http.server\", \"8000\" -NoNewWindow)",
+      "PowerShell(npx http-server . -p 8000 -o)"
+    ]
+  }
+}

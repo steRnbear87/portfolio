@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,9 +24,7 @@
 <script>
 (function() {
   try {
-    var stored = localStorage.getItem('bd-theme');
-    var system = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', stored || system);
+    document.documentElement.setAttribute('data-theme', 'light');
   } catch(e) {}
 })();
 </script>
@@ -1311,7 +1309,7 @@
     const toggle = document.getElementById('theme-toggle');
     if (toggle) {
       toggle.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
         const next = current === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         try { localStorage.setItem('bd-theme', next); } catch(e) {}
